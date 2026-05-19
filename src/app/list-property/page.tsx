@@ -39,8 +39,9 @@ export default function ListPropertyPage() {
   const [coverPreview, setCoverPreview] = useState<string | null>(null);
   const [coverFile, setCoverFile] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState('');
-  const [listedBy, setListedBy] = useState<'owner' | 'dealer' | 'builder'>('owner');
+  const [listedBy, setListedBy] = useState<'owner' | 'dealer' | 'builder' | 'dehradunghar'>('owner');
   const [brochureFile, setBrochureFile] = useState<File | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
 
@@ -51,6 +52,18 @@ export default function ListPropertyPage() {
     });
     return () => unsubscribe();
   }, []);
+
+  // Check if user is admin
+  useEffect(() => {
+    if (!authChecked || !user?.phoneNumber) return;
+    async function checkAdmin() {
+      try {
+        const res = await fetch(`/api/admin/properties?phone=${encodeURIComponent(user!.phoneNumber!)}`);
+        setIsAdmin(res.ok);
+      } catch { setIsAdmin(false); }
+    }
+    checkAdmin();
+  }, [authChecked, user]);
 
   function handleCoverSelect(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -181,14 +194,14 @@ export default function ListPropertyPage() {
       bathrooms: parseInt(form.get('bathrooms') as string) || 0,
       area_sqft: parseInt(form.get('area_sqft') as string) || 0,
       images: coverUrl ? [coverUrl] : [],
-      featured: false,
+      featured: listedBy === 'dehradunghar',  // Official listings are auto-featured
       status: 'available',
       furnishing: form.get('furnishing') as string || 'unfurnished',
       facing: form.get('facing') as string || '',
       floor: form.get('floor') as string || '',
       total_floors: parseInt(form.get('total_floors') as string) || 0,
       amenities: (form.get('amenities') as string || '').split(',').map(s => s.trim()).filter(Boolean),
-      owner_name: form.get('owner_name') as string,
+      owner_name: listedBy === 'dehradunghar' ? 'DehradunGhar' : (form.get('owner_name') as string),
       owner_phone: owner_phone.startsWith('91') ? owner_phone : `91${owner_phone}`,
       owner_email: form.get('owner_email') as string || '',
       contact_phone: owner_phone.startsWith('91') ? owner_phone : `91${owner_phone}`,
@@ -324,15 +337,33 @@ export default function ListPropertyPage() {
           )}
 
           <form ref={formRef} onSubmit={handleSubmit}>
+            {/* Official listing banner */}
+            {listedBy === 'dehradunghar' && (
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: '.75rem',
+                padding: '1rem 1.25rem', marginBottom: '1.5rem',
+                background: 'linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%)',
+                border: '2px solid #3b82f6', borderRadius: 12,
+              }}>
+                <span style={{ fontSize: '1.5rem' }}>🏛</span>
+                <div>
+                  <p style={{ fontWeight: 700, color: '#1e40af', fontSize: '.95rem', margin: 0 }}>DehradunGhar Official Listing</p>
+                  <p style={{ fontSize: '.8rem', color: '#3b82f6', margin: 0 }}>This listing will carry the verified badge and be auto-featured.</p>
+                </div>
+              </div>
+            )}
+
             <h2 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '.75rem', paddingBottom: '.5rem', borderBottom: '1px solid #e5e7eb' }}>
-              Your Contact Details
+              {listedBy === 'dehradunghar' ? 'Listing Contact Details' : 'Your Contact Details'}
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="form-group">
-                <label className="form-label">Your Name *</label>
-                <input name="owner_name" className="form-input" required placeholder="Rahul Sharma" />
-              </div>
-              <div className="form-group">
+              {listedBy !== 'dehradunghar' && (
+                <div className="form-group">
+                  <label className="form-label">Your Name *</label>
+                  <input name="owner_name" className="form-input" required placeholder="Rahul Sharma" />
+                </div>
+              )}
+              <div className="form-group" style={listedBy === 'dehradunghar' ? { gridColumn: '1 / -1' } : {}}>
                 <label className="form-label">WhatsApp Number *</label>
                 <input name="owner_phone" type="tel" className="form-input" required placeholder="9876543210" />
               </div>
@@ -343,7 +374,7 @@ export default function ListPropertyPage() {
             </div>
             <div className="form-group">
               <label className="form-label">I am a *</label>
-              <div style={{ display: 'flex', gap: '1rem', marginTop: '.35rem' }}>
+              <div style={{ display: 'flex', gap: '.75rem', marginTop: '.35rem', flexWrap: 'wrap' }}>
                 {(['owner', 'dealer', 'builder'] as const).map((type) => (
                   <label
                     key={type}
@@ -372,6 +403,34 @@ export default function ListPropertyPage() {
                     {type.charAt(0).toUpperCase() + type.slice(1)}
                   </label>
                 ))}
+                {isAdmin && (
+                  <label
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '.4rem',
+                      padding: '.5rem 1rem',
+                      borderRadius: 8,
+                      border: listedBy === 'dehradunghar' ? '2px solid #1e40af' : '1.5px solid #93c5fd',
+                      background: listedBy === 'dehradunghar' ? '#dbeafe' : '#f0f9ff',
+                      cursor: 'pointer',
+                      fontSize: '.9rem',
+                      fontWeight: listedBy === 'dehradunghar' ? 700 : 500,
+                      color: '#1e40af',
+                      transition: 'all .15s',
+                    }}
+                  >
+                    <input
+                      type="radio"
+                      name="listed_by"
+                      value="dehradunghar"
+                      checked={listedBy === 'dehradunghar'}
+                      onChange={() => setListedBy('dehradunghar')}
+                      style={{ accentColor: '#1e40af' }}
+                    />
+                    🏛 DehradunGhar Official
+                  </label>
+                )}
               </div>
             </div>
 
@@ -539,7 +598,7 @@ export default function ListPropertyPage() {
             </div>
 
             <button type="submit" className="btn btn--primary btn--lg" style={{ width: '100%', marginTop: '.5rem' }} disabled={loading}>
-              {loading ? (uploadProgress || 'Submitting...') : 'List My Property — Free'}
+              {loading ? (uploadProgress || 'Submitting...') : listedBy === 'dehradunghar' ? '🏛 Publish as DehradunGhar Official' : 'List My Property — Free'}
             </button>
             <p style={{ fontSize: '.8rem', color: '#888', textAlign: 'center', marginTop: '.75rem' }}>
               By listing, you agree that buyers can contact you directly via WhatsApp and email.
