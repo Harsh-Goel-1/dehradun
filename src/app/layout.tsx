@@ -22,6 +22,17 @@ export const metadata: Metadata = {
     'villas in dehradun', 'plots in dehradun', 'dehradun real estate',
     'buy property dehradun', 'dehradun property rates',
   ],
+  manifest: '/manifest.json',
+  themeColor: '#1a5632',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: SITE_NAME,
+  },
+  icons: {
+    icon: '/icons/icon-192x192.png',
+    apple: '/icons/icon-512x512.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_IN',
