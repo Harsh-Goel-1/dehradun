@@ -48,7 +48,7 @@ export default function Hero() {
                 Have a Property<br />to Sell?
               </h2>
               <p className="hero-sell-desc">
-                List your property for <strong>FREE</strong> and reach thousands of genuine buyers in Dehradun. No brokerage, no hidden charges.
+                List your property for <strong>FREE</strong> and reach thousands of genuine buyers. No brokerage, no hidden charges.
               </p>
               <ul className="hero-sell-perks">
                 <li>
@@ -65,7 +65,7 @@ export default function Hero() {
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
-                  Upload photos & brochures
+                  Upload photos, videos & brochures
                 </li>
               </ul>
               <Link href="/list-property" className="hero-sell-btn">
