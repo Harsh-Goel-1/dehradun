@@ -7,6 +7,7 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { onAuthChange, type User } from '@/lib/firebase/auth';
+import { compressImage } from '@/lib/compressImage';
 
 const PROPERTY_TYPES = [
   { value: 'flat', label: 'Flat / Apartment' },
@@ -111,13 +112,15 @@ export default function AdminListPropertyPage() {
 
     // Upload cover photo
     if (coverFile) {
+      setUploadProgress('Compressing image...');
+      const compressed = await compressImage(coverFile);
       setUploadProgress('Uploading cover photo...');
-      const ext = coverFile.name.split('.').pop();
+      const ext = compressed.name.split('.').pop();
       const path = `admin/${Date.now()}.${ext}`;
 
       const { data: uploadData, error: uploadError } = await supabase.storage
         .from('property-images')
-        .upload(path, coverFile, { cacheControl: '3600', upsert: false });
+        .upload(path, compressed, { cacheControl: '3600', upsert: false });
 
       if (uploadError) {
         setError(`Upload failed: ${uploadError.message}`);
