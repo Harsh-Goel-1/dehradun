@@ -18,11 +18,13 @@ interface Props {
 
 export default async function PropertiesPage({ searchParams }: Props) {
   const params = await searchParams;
+  const listingType = params.listing as 'sale' | 'rent' | undefined;
   let result;
   try {
     result = await getProperties({
       locality: params.locality,
       property_type: params.type as PropertyType | undefined,
+      listing_type: listingType || undefined,
       min_price: params.min ? parseInt(params.min) : undefined,
       max_price: params.max ? parseInt(params.max) : undefined,
       bedrooms: params.bhk ? parseInt(params.bhk) : undefined,
@@ -33,12 +35,16 @@ export default async function PropertiesPage({ searchParams }: Props) {
     result = { data: [], count: 0, page: 1, limit: 12, totalPages: 0 };
   }
 
+  const pageTitle = listingType === 'rent'
+    ? 'Properties for Rent in Dehradun'
+    : 'Properties for Sale in Dehradun';
+
   return (
     <>
       <div className="page-header">
         <div className="container">
           <Breadcrumbs items={[{ label: 'Properties' }]} />
-          <h1>Properties for Sale in Dehradun</h1>
+          <h1>{pageTitle}</h1>
           <p>{result.count} properties found</p>
         </div>
       </div>

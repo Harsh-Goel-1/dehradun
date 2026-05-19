@@ -44,6 +44,7 @@ export default function ListPropertyPage() {
   const [uploadProgress, setUploadProgress] = useState('');
   const [areaUnit, setAreaUnit] = useState<'sqft' | 'sqm' | 'gaj'>('sqft');
   const [listedBy, setListedBy] = useState<'owner' | 'dealer' | 'builder' | 'dehradunghar'>('owner');
+  const [listingType, setListingType] = useState<'sale' | 'rent'>('sale');
   const [brochureFile, setBrochureFile] = useState<File | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
@@ -191,6 +192,7 @@ export default function ListPropertyPage() {
       slug: generateSlug(title) + '-' + Date.now().toString(36),
       description: form.get('description') as string || '',
       price: parseInt(form.get('price') as string) || 0,
+      listing_type: listingType,
       locality: form.get('locality') as string,
       city: 'Dehradun',
       property_type: form.get('property_type') as string,
@@ -442,6 +444,35 @@ export default function ListPropertyPage() {
             <h2 style={{ fontSize: '1.1rem', fontWeight: 700, margin: '1.5rem 0 .75rem', paddingBottom: '.5rem', borderBottom: '1px solid #e5e7eb' }}>
               Property Details
             </h2>
+
+            {/* Sale / Rent toggle */}
+            <div className="form-group">
+              <label className="form-label">Listing For *</label>
+              <div style={{ display: 'flex', gap: 0 }}>
+                <button type="button" onClick={() => setListingType('sale')}
+                  style={{
+                    flex: 1, padding: '.6rem 1rem', border: '1.5px solid var(--color-primary)',
+                    borderRadius: '6px 0 0 6px', fontWeight: 700, fontSize: '.85rem', cursor: 'pointer',
+                    background: listingType === 'sale' ? 'var(--color-primary)' : '#fff',
+                    color: listingType === 'sale' ? '#fff' : 'var(--color-primary)',
+                    transition: 'all .2s',
+                  }}>
+                  🏷 For Sale
+                </button>
+                <button type="button" onClick={() => setListingType('rent')}
+                  style={{
+                    flex: 1, padding: '.6rem 1rem', border: '1.5px solid var(--color-primary)',
+                    borderLeft: 'none',
+                    borderRadius: '0 6px 6px 0', fontWeight: 700, fontSize: '.85rem', cursor: 'pointer',
+                    background: listingType === 'rent' ? 'var(--color-primary)' : '#fff',
+                    color: listingType === 'rent' ? '#fff' : 'var(--color-primary)',
+                    transition: 'all .2s',
+                  }}>
+                  🔑 For Rent
+                </button>
+              </div>
+            </div>
+
             <div className="form-group">
               <label className="form-label">Property Title *</label>
               <input name="title" className="form-input" required placeholder="e.g. 3 BHK Flat in Rajpur Road" />

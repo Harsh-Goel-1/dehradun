@@ -28,6 +28,7 @@ const BUDGET_RANGES = [
 
 export default function SearchBar({ variant = 'hero' }: { variant?: 'hero' | 'compact' }) {
   const router = useRouter();
+  const [listingType, setListingType] = useState<'sale' | 'rent'>('sale');
   const [locality, setLocality] = useState('');
   const [propertyType, setPropertyType] = useState('');
   const [budget, setBudget] = useState('');
@@ -39,6 +40,7 @@ export default function SearchBar({ variant = 'hero' }: { variant?: 'hero' | 'co
     const params = new URLSearchParams();
     if (locality) params.set('locality', locality);
     if (propertyType) params.set('type', propertyType);
+    params.set('listing', listingType);
     if (budget) {
       const [min, max] = budget.split('-');
       if (min && min !== '0') params.set('min', min);
@@ -54,6 +56,30 @@ export default function SearchBar({ variant = 'hero' }: { variant?: 'hero' | 'co
       role="search"
       aria-label="Search properties"
     >
+      {/* Buy / Rent toggle */}
+      <div style={{ display: 'flex', gap: 0, marginBottom: variant === 'hero' ? '.75rem' : '.5rem' }}>
+        <button type="button" onClick={() => setListingType('sale')}
+          style={{
+            flex: 1, padding: '.5rem 1rem', border: '1.5px solid var(--color-primary)',
+            borderRadius: '6px 0 0 6px', fontWeight: 700, fontSize: '.85rem', cursor: 'pointer',
+            background: listingType === 'sale' ? 'var(--color-primary)' : '#fff',
+            color: listingType === 'sale' ? '#fff' : 'var(--color-primary)',
+            transition: 'all .2s',
+          }}>
+          Buy
+        </button>
+        <button type="button" onClick={() => setListingType('rent')}
+          style={{
+            flex: 1, padding: '.5rem 1rem', border: '1.5px solid var(--color-primary)',
+            borderLeft: 'none',
+            borderRadius: '0 6px 6px 0', fontWeight: 700, fontSize: '.85rem', cursor: 'pointer',
+            background: listingType === 'rent' ? 'var(--color-primary)' : '#fff',
+            color: listingType === 'rent' ? '#fff' : 'var(--color-primary)',
+            transition: 'all .2s',
+          }}>
+          Rent
+        </button>
+      </div>
       <div className="search-bar-fields">
         <div className="search-field">
           <label htmlFor="search-locality" className="search-label">Location</label>

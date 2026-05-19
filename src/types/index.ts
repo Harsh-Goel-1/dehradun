@@ -4,6 +4,7 @@ export interface Property {
   slug: string;
   description: string;
   price: number;
+  listing_type: 'sale' | 'rent';
   locality: string;
   city: string;
   property_type: PropertyType;
@@ -36,6 +37,7 @@ export type PropertyType = 'flat' | 'house' | 'villa' | 'plot' | 'commercial' | 
 export interface PropertyFilters {
   locality?: string;
   property_type?: PropertyType;
+  listing_type?: 'sale' | 'rent';
   min_price?: number;
   max_price?: number;
   bedrooms?: number;

@@ -44,6 +44,7 @@ export default function EditMyPropertyPage() {
   const [property, setProperty] = useState<Property | null>(null);
   const [listedBy, setListedBy] = useState<'owner' | 'dealer' | 'builder' | 'dehradunghar'>('owner');
   const [areaUnit, setAreaUnit] = useState<'sqft' | 'sqm' | 'gaj'>('sqft');
+  const [listingType, setListingType] = useState<'sale' | 'rent'>('sale');
 
   useEffect(() => {
     async function load() {
@@ -61,6 +62,7 @@ export default function EditMyPropertyPage() {
       if (error || !data) { setError('Property not found or access denied.'); setLoading(false); return; }
       setProperty(data as Property);
       setListedBy((data as Property).listed_by || 'owner');
+      setListingType((data as Property).listing_type || 'sale');
       setLoading(false);
     }
     load();
@@ -80,6 +82,7 @@ export default function EditMyPropertyPage() {
       slug: generateSlug(title) + '-' + id.slice(0, 8),
       description: form.get('description') as string || '',
       price: parseInt(form.get('price') as string) || 0,
+      listing_type: listingType,
       locality: form.get('locality') as string,
       property_type: form.get('property_type') as string,
       bedrooms: parseInt(form.get('bedrooms') as string) || 0,
@@ -198,6 +201,20 @@ export default function EditMyPropertyPage() {
             <h2 style={{ fontSize: '1.1rem', fontWeight: 700, margin: '1.5rem 0 .75rem', paddingBottom: '.5rem', borderBottom: '1px solid #e5e7eb' }}>
               Property Details
             </h2>
+            {/* Sale / Rent toggle */}
+            <div className="form-group">
+              <label className="form-label">Listing For *</label>
+              <div style={{ display: 'flex', gap: 0 }}>
+                <button type="button" onClick={() => setListingType('sale')}
+                  style={{ flex: 1, padding: '.6rem 1rem', border: '1.5px solid var(--color-primary)', borderRadius: '6px 0 0 6px', fontWeight: 700, fontSize: '.85rem', cursor: 'pointer', background: listingType === 'sale' ? 'var(--color-primary)' : '#fff', color: listingType === 'sale' ? '#fff' : 'var(--color-primary)', transition: 'all .2s' }}>
+                  🏷 For Sale
+                </button>
+                <button type="button" onClick={() => setListingType('rent')}
+                  style={{ flex: 1, padding: '.6rem 1rem', border: '1.5px solid var(--color-primary)', borderLeft: 'none', borderRadius: '0 6px 6px 0', fontWeight: 700, fontSize: '.85rem', cursor: 'pointer', background: listingType === 'rent' ? 'var(--color-primary)' : '#fff', color: listingType === 'rent' ? '#fff' : 'var(--color-primary)', transition: 'all .2s' }}>
+                  🔑 For Rent
+                </button>
+              </div>
+            </div>
             <div className="form-group">
               <label className="form-label">Property Title *</label>
               <input name="title" className="form-input" required defaultValue={property.title} />

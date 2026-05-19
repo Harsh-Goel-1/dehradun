@@ -32,6 +32,9 @@ export async function getProperties(
   if (filters.bedrooms) {
     query = query.eq('bedrooms', filters.bedrooms);
   }
+  if (filters.listing_type) {
+    query = query.eq('listing_type', filters.listing_type);
+  }
 
   // Sorting
   switch (filters.sort) {

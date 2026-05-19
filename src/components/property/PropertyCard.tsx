@@ -45,12 +45,20 @@ export default function PropertyCard({ property }: { property: Property }) {
           </span>
         )}
         <span className="property-card-type">{getPropertyTypeLabel(property.property_type)}</span>
+        <span style={{
+          position: 'absolute', bottom: '.75rem', left: '.75rem',
+          background: property.listing_type === 'rent' ? 'rgba(156, 39, 176, 0.9)' : 'rgba(21, 101, 192, 0.9)',
+          color: '#fff', fontSize: '.65rem', fontWeight: 700,
+          padding: '.2rem .5rem', borderRadius: 4,
+        }}>
+          {property.listing_type === 'rent' ? 'For Rent' : 'For Sale'}
+        </span>
       </Link>
 
       <div className="property-card-body">
         <div className="property-card-price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
           <span itemProp="price" content={String(property.price)}>
-            {formatPrice(property.price)}
+            {formatPrice(property.price)}{property.listing_type === 'rent' ? '/mo' : ''}
           </span>
           <meta itemProp="priceCurrency" content="INR" />
         </div>

@@ -89,7 +89,17 @@ export default async function PropertyDetailPage({ params }: Props) {
                   </svg>
                   {property.locality}, {property.city}
                 </p>
-                <div className="property-price-tag">{formatPrice(property.price)}</div>
+                <div className="property-price-tag">
+                  {formatPrice(property.price)}{property.listing_type === 'rent' ? '/mo' : ''}
+                  <span style={{
+                    marginLeft: '.75rem', fontSize: '.7rem', fontWeight: 700,
+                    padding: '.15rem .5rem', borderRadius: 4,
+                    background: property.listing_type === 'rent' ? '#9c27b0' : '#1565c0',
+                    color: '#fff', verticalAlign: 'middle',
+                  }}>
+                    {property.listing_type === 'rent' ? 'For Rent' : 'For Sale'}
+                  </span>
+                </div>
 
                 <div className="property-specs-grid">
                   {property.bedrooms > 0 && <div className="property-spec-row"><span>Bedrooms</span><span>{property.bedrooms} BHK</span></div>}
