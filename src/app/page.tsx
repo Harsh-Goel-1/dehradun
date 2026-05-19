@@ -1,14 +1,21 @@
 import Hero from '@/components/home/Hero';
 import SEOContent from '@/components/home/SEOContent';
-import { getRecentProperties } from '@/lib/data/properties';
+import { getRecentProperties, getOfficialListings, getBuilderProjects } from '@/lib/data/properties';
 import PropertyGrid from '@/components/property/PropertyGrid';
 import Link from 'next/link';
+import { Property } from '@/types';
 
 export default async function HomePage() {
-  let recent: Awaited<ReturnType<typeof getRecentProperties>> = [];
+  let recent: Property[] = [];
+  let official: Property[] = [];
+  let builderProjects: Property[] = [];
 
   try {
-    recent = await getRecentProperties(6);
+    [recent, official, builderProjects] = await Promise.all([
+      getRecentProperties(6),
+      getOfficialListings(6),
+      getBuilderProjects(6),
+    ]);
   } catch {
     // Supabase not configured yet — render without data
   }
@@ -17,55 +24,95 @@ export default async function HomePage() {
     <>
       <Hero />
 
-      {/* Builder Projects */}
-      <section className="section section--alt" id="builder-projects">
-        <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">Builder Projects</h2>
-            <p className="section-subtitle">
-              Premium projects from top builders &amp; developers in Dehradun
-            </p>
-          </div>
-          <div className="coming-soon-card">
-            <div className="coming-soon-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="1" y="6" width="22" height="16" rx="2" />
-                <path d="M1 10h22" />
-                <path d="M8 6V2" />
-                <path d="M16 6V2" />
-              </svg>
-            </div>
-            <h3>Coming Soon</h3>
-            <p>Verified builder projects with floor plans, pricing &amp; virtual tours will be listed here shortly.</p>
-          </div>
-        </div>
-      </section>
-
       {/* DehradunGhar Official Listings */}
       <section className="section" id="official-listings">
         <div className="container">
           <div className="section-header">
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', marginBottom: '.5rem' }}>
+              <span style={{
+                background: '#1a5632', color: '#fff', fontSize: '.7rem',
+                fontWeight: 700, padding: '.2rem .6rem', borderRadius: 4,
+                display: 'flex', alignItems: 'center', gap: '.25rem',
+              }}>
+                ✓ VERIFIED
+              </span>
+            </div>
             <h2 className="section-title">DehradunGhar Official Listings</h2>
             <p className="section-subtitle">
               Curated &amp; verified properties handpicked by the DehradunGhar team
             </p>
           </div>
-          <div className="coming-soon-card">
-            <div className="coming-soon-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                <path d="M9 12l2 2 4-4" />
-              </svg>
+          {official.length > 0 ? (
+            <>
+              <PropertyGrid properties={official} />
+              <div className="section-cta">
+                <Link href="/properties?listed_by=dehradunghar" className="btn btn--primary btn--lg">
+                  View All Official Listings →
+                </Link>
+              </div>
+            </>
+          ) : (
+            <div className="coming-soon-card">
+              <div className="coming-soon-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+              </div>
+              <h3>Coming Soon</h3>
+              <p>Exclusive, personally verified listings by the DehradunGhar team — guaranteed quality &amp; authenticity.</p>
             </div>
-            <h3>Coming Soon</h3>
-            <p>Exclusive, personally verified listings by the DehradunGhar team — guaranteed quality &amp; authenticity.</p>
+          )}
+        </div>
+      </section>
+
+      {/* Builder Projects */}
+      <section className="section section--alt" id="builder-projects">
+        <div className="container">
+          <div className="section-header">
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', marginBottom: '.5rem' }}>
+              <span style={{
+                background: '#1565c0', color: '#fff', fontSize: '.7rem',
+                fontWeight: 700, padding: '.2rem .6rem', borderRadius: 4,
+                display: 'flex', alignItems: 'center', gap: '.25rem',
+              }}>
+                🏗 BUILDER
+              </span>
+            </div>
+            <h2 className="section-title">Builder Projects</h2>
+            <p className="section-subtitle">
+              Premium projects from top builders &amp; developers in Dehradun
+            </p>
           </div>
+          {builderProjects.length > 0 ? (
+            <>
+              <PropertyGrid properties={builderProjects} />
+              <div className="section-cta">
+                <Link href="/properties?listed_by=builder" className="btn btn--outline btn--lg">
+                  View All Builder Projects →
+                </Link>
+              </div>
+            </>
+          ) : (
+            <div className="coming-soon-card">
+              <div className="coming-soon-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="1" y="6" width="22" height="16" rx="2" />
+                  <path d="M1 10h22" />
+                  <path d="M8 6V2" />
+                  <path d="M16 6V2" />
+                </svg>
+              </div>
+              <h3>Coming Soon</h3>
+              <p>Verified builder projects with floor plans, pricing &amp; virtual tours will be listed here shortly.</p>
+            </div>
+          )}
         </div>
       </section>
 
       {/* Recent Free Listings */}
       {recent.length > 0 && (
-        <section className="section section--alt" id="recent-listings">
+        <section className="section" id="recent-listings">
           <div className="container">
             <div className="section-header">
               <h2 className="section-title">Recent Free Listings</h2>

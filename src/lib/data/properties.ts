@@ -86,6 +86,7 @@ export async function getRecentProperties(limit = 6): Promise<Property[]> {
     .from('properties')
     .select('*')
     .eq('status', 'available')
+    .not('listed_by', 'in', '("dehradunghar","builder")')
     .order('created_at', { ascending: false })
     .limit(limit);
 
@@ -199,4 +200,42 @@ export async function getPropertyCount(): Promise<number> {
 
   if (error) return 0;
   return count || 0;
+}
+
+export async function getOfficialListings(limit = 6): Promise<Property[]> {
+  const supabase = await createServerSupabaseClient();
+
+  const { data, error } = await supabase
+    .from('properties')
+    .select('*')
+    .eq('status', 'available')
+    .eq('listed_by', 'dehradunghar')
+    .order('created_at', { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    console.error('Error fetching official listings:', error);
+    return [];
+  }
+
+  return data as Property[];
+}
+
+export async function getBuilderProjects(limit = 6): Promise<Property[]> {
+  const supabase = await createServerSupabaseClient();
+
+  const { data, error } = await supabase
+    .from('properties')
+    .select('*')
+    .eq('status', 'available')
+    .eq('listed_by', 'builder')
+    .order('created_at', { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    console.error('Error fetching builder projects:', error);
+    return [];
+  }
+
+  return data as Property[];
 }

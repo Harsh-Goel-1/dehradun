@@ -194,7 +194,7 @@ export default function ListPropertyPage() {
       bathrooms: parseInt(form.get('bathrooms') as string) || 0,
       area_sqft: parseInt(form.get('area_sqft') as string) || 0,
       images: coverUrl ? [coverUrl] : [],
-      featured: listedBy === 'dehradunghar',  // Official listings are auto-featured
+      featured: false,
       status: 'available',
       furnishing: form.get('furnishing') as string || 'unfurnished',
       facing: form.get('facing') as string || '',
