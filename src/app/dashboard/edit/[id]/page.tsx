@@ -39,7 +39,7 @@ export default function EditMyPropertyPage() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [property, setProperty] = useState<Property | null>(null);
-  const [listedBy, setListedBy] = useState<'owner' | 'dealer' | 'builder'>('owner');
+  const [listedBy, setListedBy] = useState<'owner' | 'dealer' | 'builder' | 'dehradunghar'>('owner');
 
   useEffect(() => {
     async function load() {

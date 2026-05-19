@@ -144,6 +144,7 @@ export default function AdminPage() {
     if (filter === 'featured' && !p.featured) return false;
     if (filter === 'available' && p.status !== 'available') return false;
     if (filter === 'sold' && p.status !== 'sold') return false;
+    if (filter === 'official' && p.listed_by !== 'dehradunghar') return false;
     if (search) {
       const q = search.toLowerCase();
       return p.title.toLowerCase().includes(q)
@@ -164,7 +165,10 @@ export default function AdminPage() {
               <h1>Admin Panel</h1>
               <p>Manage all property listings</p>
             </div>
-            <Link href="/dashboard" className="btn btn--outline">My Dashboard</Link>
+            <div style={{ display: 'flex', gap: '.5rem' }}>
+              <Link href="/admin/list" className="btn btn--primary">🏛 New Official Listing</Link>
+              <Link href="/dashboard" className="btn btn--outline">My Dashboard</Link>
+            </div>
           </div>
         </div>
       </div>
@@ -178,6 +182,7 @@ export default function AdminPage() {
               { label: 'Available', count: properties.filter(p => p.status === 'available').length, color: '#16a34a' },
               { label: 'Sold', count: properties.filter(p => p.status === 'sold').length, color: '#b91c1c' },
               { label: 'Featured', count: properties.filter(p => p.featured).length, color: '#d97706' },
+              { label: 'Official', count: properties.filter(p => p.listed_by === 'dehradunghar').length, color: '#1565c0' },
             ].map((stat) => (
               <div key={stat.label} className="contact-card" style={{ textAlign: 'center' }}>
                 <p style={{ fontSize: '2rem', fontWeight: 800, color: stat.color }}>{stat.count}</p>
@@ -197,7 +202,7 @@ export default function AdminPage() {
               style={{ flex: 1, minWidth: 200, maxWidth: 400 }}
             />
             <div style={{ display: 'flex', gap: '.5rem' }}>
-              {['all', 'available', 'sold', 'featured'].map((f) => (
+              {['all', 'available', 'sold', 'featured', 'official'].map((f) => (
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
@@ -265,10 +270,10 @@ export default function AdminPage() {
                           fontWeight: 600,
                           padding: '.15rem .45rem',
                           borderRadius: 4,
-                          background: p.listed_by === 'owner' ? '#e8f5e9' : p.listed_by === 'builder' ? '#e3f2fd' : '#f3e8ff',
-                          color: p.listed_by === 'owner' ? '#1a5632' : p.listed_by === 'builder' ? '#1565c0' : '#7c3aed',
+                          background: p.listed_by === 'dehradunghar' ? '#dbeafe' : p.listed_by === 'owner' ? '#e8f5e9' : p.listed_by === 'builder' ? '#e3f2fd' : '#f3e8ff',
+                          color: p.listed_by === 'dehradunghar' ? '#1e40af' : p.listed_by === 'owner' ? '#1a5632' : p.listed_by === 'builder' ? '#1565c0' : '#7c3aed',
                         }}>
-                          {p.listed_by || 'owner'}
+                          {p.listed_by === 'dehradunghar' ? '✓ Official' : (p.listed_by || 'owner')}
                         </span>
                       </td>
                       <td style={{ fontSize: '.85rem' }}>

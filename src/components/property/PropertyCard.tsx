@@ -22,6 +22,17 @@ export default function PropertyCard({ property }: { property: Property }) {
         {property.featured && (
           <span className="property-card-badge">Featured</span>
         )}
+        {property.listed_by === 'dehradunghar' && (
+          <span style={{
+            position: 'absolute', bottom: 8, left: 8,
+            background: 'rgba(26, 86, 50, 0.9)', color: '#fff',
+            fontSize: '.65rem', fontWeight: 700, padding: '.2rem .5rem',
+            borderRadius: 4, backdropFilter: 'blur(4px)',
+            display: 'flex', alignItems: 'center', gap: '.25rem',
+          }}>
+            ✓ DehradunGhar Official
+          </span>
+        )}
         <span className="property-card-type">{getPropertyTypeLabel(property.property_type)}</span>
       </Link>
 

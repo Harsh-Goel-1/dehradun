@@ -23,7 +23,7 @@ export interface Property {
   owner_phone: string;
   owner_email: string;
   youtube_url: string | null;
-  listed_by: 'owner' | 'dealer' | 'builder';
+  listed_by: 'owner' | 'dealer' | 'builder' | 'dehradunghar';
   brochure_url: string | null;
   user_id: string | null;
   created_at: string;

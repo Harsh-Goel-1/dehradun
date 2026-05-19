@@ -72,6 +72,16 @@ export default async function PropertyDetailPage({ params }: Props) {
 
               <div className="property-info" style={{ marginTop: '1.5rem' }}>
                 <h1>{property.title}</h1>
+                {property.listed_by === 'dehradunghar' && (
+                  <div style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '.35rem',
+                    background: '#e8f5e9', border: '1.5px solid #1a5632',
+                    padding: '.3rem .7rem', borderRadius: 6, marginBottom: '.5rem',
+                    fontSize: '.8rem', fontWeight: 700, color: '#1a5632',
+                  }}>
+                    ✓ DehradunGhar Official Listing
+                  </div>
+                )}
                 <p className="property-card-location" style={{ fontSize: '.95rem', marginBottom: '.5rem' }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
