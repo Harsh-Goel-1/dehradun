@@ -37,9 +37,9 @@ export default function Header() {
           <Image
             src="/images/logo.png"
             alt="DehradunGhar"
-            width={160}
-            height={36}
-            style={{ height: 32, width: 'auto' }}
+            width={220}
+            height={48}
+            style={{ height: 44, width: 'auto' }}
             priority
           />
         </Link>

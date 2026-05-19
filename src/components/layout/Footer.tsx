@@ -34,7 +34,7 @@ export default function Footer() {
                 alt={SITE_NAME}
                 width={140}
                 height={32}
-                style={{ height: 28, width: 'auto', filter: 'brightness(0) invert(1)' }}
+                style={{ height: 38, width: 'auto', filter: 'brightness(0) invert(1)' }}
               />
             </h3>
             <p className="footer-desc">
