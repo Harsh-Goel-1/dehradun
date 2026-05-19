@@ -16,59 +16,63 @@ function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [fullPhone, setFullPhone] = useState('');
   const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
+  const [captchaReady, setCaptchaReady] = useState(false);
   const recaptchaVerifierRef = useRef<RecaptchaVerifier | null>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
   const next = searchParams.get('next') || '/dashboard';
 
-  // Pre-render the invisible reCAPTCHA verifier on mount
-  useEffect(() => {
-    async function setupRecaptcha() {
-      try {
-        await initializeRecaptchaConfig(auth);
-      } catch (err) {
-        console.warn('reCAPTCHA config init failed:', err);
-      }
+  // Setup invisible reCAPTCHA on mount
+  const setupRecaptcha = useCallback(async () => {
+    setCaptchaReady(false);
 
-      const verifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-        size: 'invisible',
-      });
-
-      try {
-        await verifier.render();
-        recaptchaVerifierRef.current = verifier;
-      } catch (err) {
-        console.error('reCAPTCHA render failed:', err);
-      }
-    }
-
-    setupRecaptcha();
-
-    return () => {
-      if (recaptchaVerifierRef.current) {
-        recaptchaVerifierRef.current.clear();
-        recaptchaVerifierRef.current = null;
-      }
-    };
-  }, []);
-
-  const resetRecaptcha = useCallback(async () => {
-    // Clear old verifier
+    // Clear any previous verifier
     if (recaptchaVerifierRef.current) {
-      recaptchaVerifierRef.current.clear();
+      try { recaptchaVerifierRef.current.clear(); } catch {}
       recaptchaVerifierRef.current = null;
     }
-    // Clear the container
     const container = document.getElementById('recaptcha-container');
     if (container) container.innerHTML = '';
 
-    // Create a fresh one
+    try {
+      await initializeRecaptchaConfig(auth);
+    } catch {
+      // Non-critical — invisible reCAPTCHA still works
+    }
+
     const verifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
       size: 'invisible',
     });
-    await verifier.render();
-    recaptchaVerifierRef.current = verifier;
+
+    try {
+      await verifier.render();
+      recaptchaVerifierRef.current = verifier;
+      setCaptchaReady(true);
+    } catch (err) {
+      console.error('reCAPTCHA render failed:', err);
+    }
   }, []);
+
+  useEffect(() => {
+    setupRecaptcha();
+    return () => {
+      if (recaptchaVerifierRef.current) {
+        try { recaptchaVerifierRef.current.clear(); } catch {}
+        recaptchaVerifierRef.current = null;
+      }
+    };
+  }, [setupRecaptcha]);
+
+  // Helper: wait for captcha to be ready (up to 8 seconds)
+  async function waitForCaptcha(): Promise<boolean> {
+    if (recaptchaVerifierRef.current) return true;
+    // Poll every 200ms for up to 8 seconds
+    for (let i = 0; i < 40; i++) {
+      await new Promise(r => setTimeout(r, 200));
+      if (recaptchaVerifierRef.current) return true;
+    }
+    return false;
+  }
 
   async function handleSendOtp(e?: React.FormEvent) {
     if (e) e.preventDefault();
@@ -90,11 +94,20 @@ function LoginForm() {
     setFullPhone(formattedPhone);
 
     try {
+      // Wait for captcha instead of erroring immediately
       if (!recaptchaVerifierRef.current) {
-        throw new Error('reCAPTCHA not ready. Please refresh the page.');
+        const ready = await waitForCaptcha();
+        if (!ready) {
+          // Try one more setup
+          await setupRecaptcha();
+          const retryReady = await waitForCaptcha();
+          if (!retryReady) {
+            throw new Error('Verification setup failed. Please refresh the page.');
+          }
+        }
       }
 
-      const result = await signInWithPhoneNumber(auth, formattedPhone, recaptchaVerifierRef.current);
+      const result = await signInWithPhoneNumber(auth, formattedPhone, recaptchaVerifierRef.current!);
       setConfirmationResult(result);
       setStep('otp');
     } catch (err: unknown) {
@@ -109,7 +122,7 @@ function LoginForm() {
         setError(msg);
       }
       // Reset reCAPTCHA after failure so it can be used again
-      await resetRecaptcha();
+      await setupRecaptcha();
     } finally {
       setLoading(false);
     }
@@ -201,8 +214,15 @@ function LoginForm() {
                   </div>
                 </div>
                 <button type="submit" className="btn btn--primary" style={{ width: '100%' }} disabled={loading}>
-                  {loading ? 'Sending OTP...' : 'Send OTP'}
+                  {loading
+                    ? (captchaReady ? 'Sending OTP...' : 'Setting up, please wait...')
+                    : 'Send OTP'}
                 </button>
+                {!captchaReady && !loading && (
+                  <p style={{ textAlign: 'center', marginTop: '.5rem', fontSize: '.75rem', color: '#d97706' }}>
+                    Verification is loading... you can still type your number.
+                  </p>
+                )}
                 <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '.8rem', color: '#999' }}>
                   We&apos;ll send a one-time password to verify your number.
                   <br />New users are automatically registered.
