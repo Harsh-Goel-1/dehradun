@@ -10,7 +10,11 @@ const PROPERTY_TYPES = [
   { value: 'house', label: 'House' },
   { value: 'villa', label: 'Villa' },
   { value: 'plot', label: 'Plot / Land' },
+  { value: 'farmhouse', label: 'Farmhouse' },
   { value: 'commercial', label: 'Commercial' },
+  { value: 'industrial', label: 'Industrial' },
+  { value: 'pg', label: 'PG / Co-living' },
+  { value: 'other', label: 'Other' },
 ];
 
 const BUDGET_RANGES = [

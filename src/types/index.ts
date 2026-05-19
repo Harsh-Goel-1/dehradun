@@ -30,7 +30,7 @@ export interface Property {
   updated_at: string;
 }
 
-export type PropertyType = 'flat' | 'house' | 'villa' | 'plot' | 'commercial' | 'pg';
+export type PropertyType = 'flat' | 'house' | 'villa' | 'plot' | 'commercial' | 'pg' | 'farmhouse' | 'industrial' | 'other';
 
 export interface PropertyFilters {
   locality?: string;

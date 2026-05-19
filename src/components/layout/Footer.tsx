@@ -16,7 +16,9 @@ const PROPERTY_TYPES = [
   { href: '/properties?type=house', label: 'Independent Houses' },
   { href: '/properties?type=villa', label: 'Villas' },
   { href: '/properties?type=plot', label: 'Plots & Land' },
+  { href: '/properties?type=farmhouse', label: 'Farmhouses' },
   { href: '/properties?type=commercial', label: 'Commercial' },
+  { href: '/properties?type=industrial', label: 'Industrial' },
 ];
 
 export default function Footer() {

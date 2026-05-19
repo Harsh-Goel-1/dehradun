@@ -46,6 +46,9 @@ export function getPropertyTypeLabel(type: string): string {
     plot: 'Plot / Land',
     commercial: 'Commercial',
     pg: 'PG / Co-living',
+    farmhouse: 'Farmhouse',
+    industrial: 'Industrial',
+    other: 'Other',
   };
   return labels[type] || type;
 }
