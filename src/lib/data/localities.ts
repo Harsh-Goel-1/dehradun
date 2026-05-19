@@ -4,225 +4,221 @@ export const LOCALITIES: Locality[] = [
   {
     slug: 'property-in-rajpur-road',
     name: 'Rajpur Road',
-    description:
-      'Rajpur Road is one of the most sought-after residential areas in Dehradun, stretching from the city center towards Mussoorie. Known for its upscale lifestyle, this locality offers a perfect blend of urban convenience and natural beauty. The area is lined with premium restaurants, branded showrooms, reputed schools like The Doon School and Welham, and top hospitals including Max and Synergy. Properties here command a premium due to the excellent connectivity, lush green surroundings, and proximity to the foothills.',
+    description: 'Rajpur Road is one of the most sought-after residential areas in Dehradun, stretching from the city center towards Mussoorie. Known for its upscale lifestyle, this locality offers a perfect blend of urban convenience and natural beauty. The area is lined with premium restaurants, branded showrooms, reputed schools like The Doon School and Welham, and top hospitals including Max and Synergy. Properties here command a premium due to the excellent connectivity, lush green surroundings, and proximity to the foothills.',
+    lifestyle: 'Rajpur Road offers an upscale, cosmopolitan lifestyle. Residents enjoy tree-lined avenues, premium cafes, fine-dining restaurants, and weekend drives to Mussoorie. The area attracts affluent families, NRIs, and retired professionals who value tranquility without sacrificing urban conveniences. Evening walks along the road offer stunning Doon Valley views.',
+    target_audience: 'HNI families, NRIs looking for second homes, retired professionals, senior executives, and luxury homebuyers seeking premium addresses in Dehradun.',
+    why_invest: 'Rajpur Road has shown consistent 8-12% annual appreciation over the past decade. Its proximity to elite schools drives permanent rental demand from out-of-state families. Limited new land supply and heritage zoning ensure long-term scarcity value. The upcoming Dehradun Smart City corridor plans will further boost connectivity.',
+    best_for: ['Luxury Living', 'NRI Investment', 'Family Homes', 'Rental Income', 'Retirement'],
     meta_title: 'Property in Rajpur Road, Dehradun | Flats, Houses & Villas for Sale',
-    meta_description:
-      'Explore verified properties for sale in Rajpur Road, Dehradun. Find flats, independent houses, and villas in one of Dehradun\'s most premium localities. Best prices, direct from owners.',
+    meta_description: 'Explore verified properties for sale in Rajpur Road, Dehradun. Find flats, independent houses, and villas in one of Dehradun\'s most premium localities. Best prices, direct from owners.',
     hero_text: 'Premium Properties in Rajpur Road, Dehradun',
-    amenities: [
-      'The Doon School',
-      'Welham Boys School',
-      'Max Super Specialty Hospital',
-      'Pacific Mall',
-      'Rajpur Road Market',
-      'Forest Research Institute (FRI)',
-      'Tapkeshwar Temple',
-    ],
+    amenities: ['The Doon School', 'Welham Boys School', 'Max Super Specialty Hospital', 'Pacific Mall', 'Rajpur Road Market', 'Forest Research Institute (FRI)', 'Tapkeshwar Temple'],
+    infrastructure: {
+      schools: ['The Doon School', 'Welham Boys School', 'Welham Girls School', 'Shri Ram Centennial School', 'Ann Mary School'],
+      hospitals: ['Max Super Specialty Hospital', 'Synergy Hospital', 'Jolly Grant Government Hospital'],
+      markets: ['Pacific Mall', 'Rajpur Road Market', 'Astley Hall', 'Big Bazaar'],
+      transport: ['City Bus Service', 'Vikram to Clock Tower', 'Dehradun Railway Stn 6 km', 'Jolly Grant Airport 30 km', 'ISBT 5 km'],
+      landmarks: ['Tapkeshwar Temple', 'Robber\'s Cave (Gucchupani)', 'Malsi Deer Park', 'FRI Campus'],
+    },
+    market_insights: {
+      avg_price_sqft: '5,000 - 7,500 per sq.ft.',
+      rent_range: '12,000 - 35,000 per month',
+      appreciation: '8-12% annual price growth',
+      demand: 'Consistently high with limited supply in premium segments',
+      popular_configs: ['3 BHK Flat', '4 BHK Villa', 'Independent House', 'Builder Floor'],
+    },
+    nearby_areas: ['Sahastradhara Road', 'GMS Road', 'Clement Town'],
     faqs: [
-      {
-        question: 'What is the average property price in Rajpur Road?',
-        answer:
-          'Property prices in Rajpur Road range from ₹45 Lac to ₹3.5 Cr depending on property type and exact location. Flats average ₹5,000–7,500 per sq.ft., while independent houses and villas can go higher.',
-      },
-      {
-        question: 'Is Rajpur Road a good locality for investment?',
-        answer:
-          'Yes, Rajpur Road is one of the best localities for real estate investment in Dehradun. It has shown consistent price appreciation of 8-12% annually and has excellent rental demand due to proximity to premium schools and offices.',
-      },
-      {
-        question: 'What types of properties are available in Rajpur Road?',
-        answer:
-          'You can find 2 BHK and 3 BHK flats, independent houses, luxury villas, and commercial shops in Rajpur Road. The area has both old and new construction projects.',
-      },
-      {
-        question: 'How is connectivity from Rajpur Road?',
-        answer:
-          'Rajpur Road connects directly to the city center and Mussoorie. Dehradun Railway Station is about 6 km away, Jolly Grant Airport is 30 km, and ISBT is 5 km. Local transport is readily available.',
-      },
+      { question: 'What is the average property price in Rajpur Road?', answer: 'Property prices in Rajpur Road range from 45 Lac to 3.5 Cr depending on property type and exact location. Flats average 5,000-7,500 per sq.ft., while independent houses and villas can go higher.' },
+      { question: 'Is Rajpur Road a good locality for investment?', answer: 'Yes, Rajpur Road is one of the best localities for real estate investment in Dehradun. It has shown consistent price appreciation of 8-12% annually and has excellent rental demand due to proximity to premium schools and offices.' },
+      { question: 'What types of properties are available in Rajpur Road?', answer: 'You can find 2 BHK and 3 BHK flats, independent houses, luxury villas, and commercial shops in Rajpur Road. The area has both old and new construction projects.' },
+      { question: 'How is connectivity from Rajpur Road?', answer: 'Rajpur Road connects directly to the city center and Mussoorie. Dehradun Railway Station is about 6 km away, Jolly Grant Airport is 30 km, and ISBT is 5 km. Local transport is readily available.' },
+      { question: 'Is Rajpur Road safe for families?', answer: 'Absolutely. Rajpur Road is one of the safest localities in Dehradun with a strong police presence, well-lit streets, and gated communities. Its proximity to top schools makes it especially popular with families.' },
     ],
     property_types: ['flat', 'house', 'villa'],
-    avg_price_range: '₹45 Lac – ₹3.5 Cr',
+    avg_price_range: '45 Lac - 3.5 Cr',
     pin_code: '248001',
   },
   {
     slug: 'flats-in-sahastradhara-road',
     name: 'Sahastradhara Road',
-    description:
-      'Sahastradhara Road has rapidly emerged as Dehradun\'s IT and residential hub. Named after the famous Sahastradhara waterfall, this locality offers a unique combination of natural beauty and modern infrastructure. The IT Park and numerous software companies have attracted young professionals, boosting the demand for rental and purchase properties. New residential projects with modern amenities are coming up along this stretch.',
+    description: 'Sahastradhara Road has rapidly emerged as Dehradun\'s IT and residential hub. Named after the famous Sahastradhara waterfall, this locality offers a unique combination of natural beauty and modern infrastructure. The IT Park and numerous software companies have attracted young professionals, boosting the demand for rental and purchase properties.',
+    lifestyle: 'Sahastradhara Road is the beating heart of young, professional Dehradun. Co-working cafes, trendy eateries, weekend waterfall treks, and a thriving tech community define the lifestyle here. The Graphic Era University campus brings student energy, while the IT Park ensures a steady flow of corporate professionals.',
+    target_audience: 'IT professionals, young couples, first-time homebuyers, students, and investors targeting high-rental-yield apartments near the IT Park.',
+    why_invest: 'The IT Park expansion is driving strong rental demand with 6-8% yields among the highest in Dehradun. New metro connectivity proposals and the upcoming ring road will cut commute times. Property prices are still 30-40% below Rajpur Road, offering significant upside.',
+    best_for: ['IT Professionals', 'First-Time Buyers', 'Rental Yield', 'Student Housing', 'Young Couples'],
     meta_title: 'Flats in Sahastradhara Road, Dehradun | 1/2/3 BHK Apartments for Sale',
-    meta_description:
-      'Find affordable and premium flats in Sahastradhara Road, Dehradun. Browse 1 BHK, 2 BHK, and 3 BHK apartments near IT Park. Verified listings with photos.',
+    meta_description: 'Find affordable and premium flats in Sahastradhara Road, Dehradun. Browse 1 BHK, 2 BHK, and 3 BHK apartments near IT Park. Verified listings with photos.',
     hero_text: 'Modern Flats in Sahastradhara Road, Dehradun',
-    amenities: [
-      'IT Park Dehradun',
-      'Sahastradhara Waterfall',
-      'Graphic Era University',
-      'DIT University',
-      'Shivalik Hospital',
-      'Nature Parks',
-    ],
+    amenities: ['IT Park Dehradun', 'Sahastradhara Waterfall', 'Graphic Era University', 'DIT University', 'Shivalik Hospital', 'Nature Parks'],
+    infrastructure: {
+      schools: ['Graphic Era School', 'DIT International School', 'Shemrock School', 'The Presidency School'],
+      hospitals: ['Shivalik Hospital', 'Sanjay Trauma Centre', 'Government Doon Medical College 8 km'],
+      markets: ['IT Park Commercial Complex', 'Aman Vihar Market', 'D-Mart 6 km'],
+      transport: ['IT Park shuttle buses', 'Vikram to Ballupur Chowk', 'Dehradun Railway Stn 10 km', 'Jolly Grant Airport 25 km'],
+      landmarks: ['Sahastradhara Waterfall', 'Robber\'s Cave', 'Lacchiwala Nature Park', 'Tapkeshwar Temple'],
+    },
+    market_insights: {
+      avg_price_sqft: '3,800 - 5,500 per sq.ft.',
+      rent_range: '8,000 - 20,000 per month',
+      appreciation: '10-15% annual growth (emerging corridor)',
+      demand: 'Rising driven by IT Park expansion and university proximity',
+      popular_configs: ['2 BHK Flat', '1 BHK Studio', '3 BHK Apartment'],
+    },
+    nearby_areas: ['Rajpur Road', 'Clement Town', 'Premnagar'],
     faqs: [
-      {
-        question: 'What is the price range for flats in Sahastradhara Road?',
-        answer:
-          'Flats in Sahastradhara Road range from ₹25 Lac for a 1 BHK to ₹1.2 Cr for a premium 3 BHK. The average rate is ₹3,800–5,500 per sq.ft.',
-      },
-      {
-        question: 'Is Sahastradhara Road good for working professionals?',
-        answer:
-          'Absolutely. The Dehradun IT Park is located on this road, making it ideal for IT professionals. Several co-working spaces, cafes, and modern apartments cater to the young working crowd.',
-      },
-      {
-        question: 'What are upcoming projects in Sahastradhara Road?',
-        answer:
-          'Multiple reputed builders including Savfab, Escon, and local developers have projects under construction on Sahastradhara Road, offering modern amenities at competitive prices.',
-      },
+      { question: 'What is the price range for flats in Sahastradhara Road?', answer: 'Flats in Sahastradhara Road range from 25 Lac for a 1 BHK to 1.2 Cr for a premium 3 BHK. The average rate is 3,800-5,500 per sq.ft.' },
+      { question: 'Is Sahastradhara Road good for working professionals?', answer: 'Absolutely. The Dehradun IT Park is located on this road, making it ideal for IT professionals. Several co-working spaces, cafes, and modern apartments cater to the young working crowd.' },
+      { question: 'What are upcoming projects in Sahastradhara Road?', answer: 'Multiple reputed builders have projects under construction on Sahastradhara Road, offering modern amenities at competitive prices.' },
+      { question: 'Is Sahastradhara Road good for rental investment?', answer: 'Yes, rental yields of 6-8% are common here due to IT Park employees and university students. 2 BHK flats are the most in-demand configuration for rentals.' },
     ],
     property_types: ['flat'],
-    avg_price_range: '₹25 Lac – ₹1.2 Cr',
+    avg_price_range: '25 Lac - 1.2 Cr',
     pin_code: '248001',
   },
   {
     slug: 'plots-in-premnagar',
     name: 'Premnagar',
-    description:
-      'Premnagar is a well-established residential colony in Dehradun known for its peaceful environment and good infrastructure. Located near Clement Town and the famous Indian Military Academy (IMA), this area is popular among defence families and retirees. Premnagar offers reasonably priced properties with good road connectivity, parks, and local markets. The locality has a strong community feel with wide roads and well-maintained public spaces.',
+    description: 'Premnagar is a well-established residential colony in Dehradun known for its peaceful environment and good infrastructure. Located near Clement Town and the famous Indian Military Academy (IMA), this area is popular among defence families and retirees.',
+    lifestyle: 'Premnagar is defined by its quiet, disciplined, community-driven lifestyle. Wide tree-lined roads, morning joggers, evening cricket matches in the parks, and a strong neighbourhood watch system create a safe, family-first environment. The presence of defence families gives the area a unique character.',
+    target_audience: 'Defence families, retirees, middle-income families seeking peaceful living, and plot investors looking for land appreciation in established colonies.',
+    why_invest: 'Premnagar offers the stability of an established colony with prices 40% below Rajpur Road. Plot values have appreciated 6-8% annually. The proposed ring road connecting Premnagar to Sahastradhara Road will improve connectivity and boost property values. Freehold plots are available which is rare in central Dehradun.',
+    best_for: ['Defence Families', 'Retirees', 'Plot Investment', 'Peaceful Living', 'Budget Homes'],
     meta_title: 'Plots in Premnagar, Dehradun | Residential Land & Houses for Sale',
-    meta_description:
-      'Buy residential plots and independent houses in Premnagar, Dehradun. Peaceful locality near IMA with verified listings. Contact owners directly.',
+    meta_description: 'Buy residential plots and independent houses in Premnagar, Dehradun. Peaceful locality near IMA with verified listings. Contact owners directly.',
     hero_text: 'Residential Plots & Houses in Premnagar, Dehradun',
-    amenities: [
-      'Indian Military Academy (IMA)',
-      'Forest Research Institute (FRI)',
-      'Premnagar Market',
-      'Clement Town Bus Stand',
-      'Parks & Green Spaces',
-      'Army Schools',
-    ],
+    amenities: ['Indian Military Academy (IMA)', 'Forest Research Institute (FRI)', 'Premnagar Market', 'Clement Town Bus Stand', 'Parks & Green Spaces', 'Army Schools'],
+    infrastructure: {
+      schools: ['Army Public School', 'Kendriya Vidyalaya (IMA)', 'St. Joseph\'s Academy', 'Scholar\'s Home'],
+      hospitals: ['Military Hospital', 'Doon Hospital 5 km', 'Mahant Indiresh Hospital 6 km'],
+      markets: ['Premnagar Local Market', 'Clement Town Market', 'Paltan Bazaar 6 km'],
+      transport: ['City bus to Clock Tower', 'Vikram to Clement Town', 'Dehradun Railway Stn 8 km', 'ISBT 7 km'],
+      landmarks: ['Indian Military Academy', 'Forest Research Institute', 'Mindrolling Monastery 2 km', 'Khalanga War Memorial'],
+    },
+    market_insights: {
+      avg_price_sqft: '3,000 - 4,500 per sq.ft.',
+      rent_range: '6,000 - 15,000 per month',
+      appreciation: '6-8% annual growth',
+      demand: 'Steady driven by defence transfers and retirees',
+      popular_configs: ['Residential Plot', 'Independent House', '2 BHK Flat'],
+    },
+    nearby_areas: ['Clement Town', 'Sahastradhara Road', 'GMS Road'],
     faqs: [
-      {
-        question: 'What is the plot rate in Premnagar?',
-        answer:
-          'Plot rates in Premnagar range from ₹8,000 to ₹15,000 per sq. yard depending on the exact location and road width. Corner plots and main road facing plots command a premium.',
-      },
-      {
-        question: 'Is Premnagar safe for families?',
-        answer:
-          'Yes, Premnagar is considered one of the safest localities in Dehradun due to its proximity to the IMA and the presence of defence families. The area has low crime rates and a good community atmosphere.',
-      },
-      {
-        question: 'What amenities are available near Premnagar?',
-        answer:
-          'Premnagar has local markets, ATMs, schools, parks, and hospitals within easy reach. Pacific Mall and the city center are about 4-5 km away.',
-      },
+      { question: 'What is the plot rate in Premnagar?', answer: 'Plot rates in Premnagar range from 8,000 to 15,000 per sq. yard depending on the exact location and road width. Corner plots and main road facing plots command a premium.' },
+      { question: 'Is Premnagar safe for families?', answer: 'Yes, Premnagar is considered one of the safest localities in Dehradun due to its proximity to the IMA and the presence of defence families. The area has low crime rates and a good community atmosphere.' },
+      { question: 'What amenities are available near Premnagar?', answer: 'Premnagar has local markets, ATMs, schools, parks, and hospitals within easy reach. Pacific Mall and the city center are about 4-5 km away.' },
+      { question: 'Can I build a house on a plot in Premnagar?', answer: 'Yes, most plots in Premnagar are freehold with clear titles. You can build up to 3 floors subject to municipal building bylaws.' },
     ],
     property_types: ['plot', 'house'],
-    avg_price_range: '₹20 Lac – ₹1.5 Cr',
+    avg_price_range: '20 Lac - 1.5 Cr',
     pin_code: '248007',
   },
   {
     slug: 'properties-in-doiwala',
     name: 'Doiwala',
-    description:
-      'Doiwala is an emerging real estate destination located about 25 km from Dehradun city center on the Dehradun-Haridwar highway (NH-72). With significantly lower property prices than central Dehradun, Doiwala is attracting investors and homebuyers looking for affordable options. The upcoming Dehradun-Delhi Expressway and proximity to Jolly Grant Airport (12 km) are expected to boost property values significantly.',
+    description: 'Doiwala is an emerging real estate destination located about 25 km from Dehradun city center on the Dehradun-Haridwar highway (NH-72). With significantly lower property prices than central Dehradun, Doiwala is attracting investors and homebuyers looking for affordable options.',
+    lifestyle: 'Doiwala offers a semi-urban lifestyle where the pace is slower and the air is cleaner. Residents enjoy large open spaces, affordable living, and easy access to both Dehradun and Haridwar. Weekend trips to Rishikesh and Haridwar are common.',
+    target_audience: 'Budget-conscious first-time buyers, industrial workers near SIDCUL, land investors betting on infrastructure growth, and families seeking affordable housing.',
+    why_invest: 'Doiwala is the highest-upside investment zone near Dehradun. The Delhi-Dehradun Expressway will cut travel time to Delhi to 2.5 hours, and Jolly Grant Airport is just 12 km away. Current prices are 60% below central Dehradun. Early investors can expect 15-25% returns as infrastructure matures over 3-5 years.',
+    best_for: ['Budget Buyers', 'Land Investment', 'Industrial Workers', 'Long-Term Appreciation', 'Farmhouse Plots'],
     meta_title: 'Properties in Doiwala, Dehradun | Affordable Plots & Flats for Sale',
-    meta_description:
-      'Explore affordable properties in Doiwala, Dehradun. Residential plots and flats near NH-72 with high appreciation potential. Starting from ₹10 Lac.',
+    meta_description: 'Explore affordable properties in Doiwala, Dehradun. Residential plots and flats near NH-72 with high appreciation potential. Starting from 10 Lac.',
     hero_text: 'Affordable Properties in Doiwala, Dehradun',
-    amenities: [
-      'NH-72 Connectivity',
-      'Jolly Grant Airport (12 km)',
-      'SIDCUL Industrial Area',
-      'Local Markets',
-      'Government Schools',
-      'Primary Health Center',
-    ],
+    amenities: ['NH-72 Connectivity', 'Jolly Grant Airport (12 km)', 'SIDCUL Industrial Area', 'Local Markets', 'Government Schools', 'Primary Health Center'],
+    infrastructure: {
+      schools: ['Government Inter College Doiwala', 'DAV Public School', 'Shivalik Public School'],
+      hospitals: ['Primary Health Centre Doiwala', 'Himalayan Hospital 15 km', 'Max Hospital 25 km'],
+      markets: ['Doiwala Main Market', 'SIDCUL Commercial Area', 'Rishikesh Market 20 km'],
+      transport: ['NH-72 Dehradun-Haridwar Highway', 'Regular buses to Dehradun and Haridwar', 'Jolly Grant Airport 12 km', 'Dehradun Railway Stn 25 km'],
+      landmarks: ['SIDCUL Industrial Park', 'Jolly Grant Airport', 'Rajaji National Park 10 km', 'Lacchiwala Nature Park'],
+    },
+    market_insights: {
+      avg_price_sqft: '2,500 - 3,500 per sq.ft.',
+      rent_range: '4,000 - 10,000 per month',
+      appreciation: '15-25% expected (infrastructure-driven)',
+      demand: 'Rising driven by expressway and airport development',
+      popular_configs: ['Residential Plot', '2 BHK Flat', 'Farmhouse Land'],
+    },
+    nearby_areas: ['Sahastradhara Road', 'Rajpur Road', 'Clement Town'],
     faqs: [
-      {
-        question: 'Why should I invest in Doiwala?',
-        answer:
-          'Doiwala offers excellent investment potential due to the upcoming Dehradun-Delhi Expressway, proximity to Jolly Grant Airport, and SIDCUL industrial area. Property prices are 50-60% lower than central Dehradun with high appreciation expected.',
-      },
-      {
-        question: 'What is the current property rate in Doiwala?',
-        answer:
-          'Land prices in Doiwala range from ₹3,000 to ₹8,000 per sq. yard. Flats are available from ₹2,500 to ₹3,500 per sq.ft., making it one of the most affordable areas near Dehradun.',
-      },
-      {
-        question: 'How is Doiwala connected to Dehradun city?',
-        answer:
-          'Doiwala is well-connected to Dehradun via NH-72 (Dehradun-Haridwar highway). Regular bus service and shared autos are available. The drive to Dehradun city takes about 30-40 minutes.',
-      },
+      { question: 'Why should I invest in Doiwala?', answer: 'Doiwala offers excellent investment potential due to the upcoming Dehradun-Delhi Expressway, proximity to Jolly Grant Airport, and SIDCUL industrial area. Property prices are 50-60% lower than central Dehradun with high appreciation expected.' },
+      { question: 'What is the current property rate in Doiwala?', answer: 'Land prices in Doiwala range from 3,000 to 8,000 per sq. yard. Flats are available from 2,500 to 3,500 per sq.ft., making it one of the most affordable areas near Dehradun.' },
+      { question: 'How is Doiwala connected to Dehradun city?', answer: 'Doiwala is well-connected to Dehradun via NH-72. Regular bus service and shared autos are available. The drive to Dehradun city takes about 30-40 minutes.' },
     ],
     property_types: ['plot', 'flat', 'house'],
-    avg_price_range: '₹10 Lac – ₹60 Lac',
+    avg_price_range: '10 Lac - 60 Lac',
     pin_code: '248140',
   },
   {
     slug: 'property-in-gms-road',
     name: 'GMS Road',
-    description:
-      'GMS Road (General Mahadev Singh Road) is one of Dehradun\'s busiest commercial and residential corridors. Running from Clock Tower to Ballupur Chowk, this road is the commercial heart of the city. It offers excellent connectivity, abundant shopping options, and a vibrant lifestyle. Several new residential projects have come up along this stretch, offering modern apartments with good amenities.',
+    description: 'GMS Road (General Mahadev Singh Road) is one of Dehradun\'s busiest commercial and residential corridors. Running from Clock Tower to Ballupur Chowk, this road is the commercial heart of the city with excellent connectivity, shopping options, and a vibrant lifestyle.',
+    lifestyle: 'GMS Road is always alive with energy. Street food vendors, electronics shops, clothing stores, and chai stalls line the road. Living here means you are never more than a walk away from anything you need. The area appeals to those who prefer city life over suburban quiet.',
+    target_audience: 'Commercial property investors, small business owners, working professionals who want city-center living, and families who prefer walkable urban neighbourhoods.',
+    why_invest: 'GMS Road commercial properties offer 5-7% rental yields with near-zero vacancy. Mixed-use properties (shop plus residence) are unique to this corridor. As Dehradun\'s population grows, central commercial real estate will only become scarcer and more valuable.',
+    best_for: ['Commercial Investment', 'City-Center Living', 'Shop + Residence', 'Working Professionals', 'Rental Income'],
     meta_title: 'Property in GMS Road, Dehradun | Flats & Commercial Spaces for Sale',
-    meta_description:
-      'Find properties on GMS Road, Dehradun. Residential flats and commercial spaces in the heart of the city. Prime location, excellent connectivity.',
+    meta_description: 'Find properties on GMS Road, Dehradun. Residential flats and commercial spaces in the heart of the city. Prime location, excellent connectivity.',
     hero_text: 'Prime Properties on GMS Road, Dehradun',
-    amenities: [
-      'Clock Tower',
-      'Dehradun Railway Station (3 km)',
-      'ISBT (2 km)',
-      'Shopping Markets',
-      'Banks & ATMs',
-      'Government Offices',
-    ],
+    amenities: ['Clock Tower', 'Dehradun Railway Station (3 km)', 'ISBT (2 km)', 'Shopping Markets', 'Banks & ATMs', 'Government Offices'],
+    infrastructure: {
+      schools: ['DAV Public School', 'Carman School', 'St. Thomas College', 'Guru Nanak Fifth Centenary School'],
+      hospitals: ['Doon Hospital', 'CMI Hospital', 'Government Doon Medical College 4 km'],
+      markets: ['Paltan Bazaar', 'Astley Hall', 'Clock Tower Market', 'Connaught Place Dehradun'],
+      transport: ['Clock Tower bus hub 1 km', 'ISBT 2 km', 'Dehradun Railway Stn 3 km', 'Jolly Grant Airport 30 km', 'City bus routes'],
+      landmarks: ['Clock Tower', 'Paltan Bazaar', 'Survey of India', 'Guru Ram Rai Darbar Sahib'],
+    },
+    market_insights: {
+      avg_price_sqft: '4,500 - 6,500 per sq.ft.',
+      rent_range: '10,000 - 25,000 per month',
+      appreciation: '5-8% annual (mature market)',
+      demand: 'High for commercial, moderate for residential',
+      popular_configs: ['Commercial Shop', '2 BHK Flat', '3 BHK Flat', 'Mixed-Use Property'],
+    },
+    nearby_areas: ['Rajpur Road', 'Premnagar', 'Clement Town'],
     faqs: [
-      {
-        question: 'Is GMS Road a good location for commercial property?',
-        answer:
-          'Yes, GMS Road is one of the best commercial locations in Dehradun. It has high footfall, excellent connectivity, and a mix of retail, office, and residential spaces.',
-      },
-      {
-        question: 'What is the average price of flats on GMS Road?',
-        answer:
-          'Flats on GMS Road range from ₹40 Lac for a 2 BHK to ₹1.2 Cr for a premium 3 BHK. Commercial shops can range from ₹50 Lac to ₹3 Cr depending on size and location.',
-      },
+      { question: 'Is GMS Road a good location for commercial property?', answer: 'Yes, GMS Road is one of the best commercial locations in Dehradun. It has high footfall, excellent connectivity, and a mix of retail, office, and residential spaces.' },
+      { question: 'What is the average price of flats on GMS Road?', answer: 'Flats on GMS Road range from 40 Lac for a 2 BHK to 1.2 Cr for a premium 3 BHK. Commercial shops can range from 50 Lac to 3 Cr depending on size and location.' },
+      { question: 'Is GMS Road noisy for residential living?', answer: 'Main GMS Road can be noisy during peak hours. However, many new residential projects are set back from the main road in quieter lanes, offering city convenience with reduced noise.' },
     ],
     property_types: ['flat', 'commercial'],
-    avg_price_range: '₹40 Lac – ₹3 Cr',
+    avg_price_range: '40 Lac - 3 Cr',
     pin_code: '248001',
   },
   {
     slug: 'property-in-clement-town',
     name: 'Clement Town',
-    description:
-      'Clement Town is a well-known locality in Dehradun, famous for being home to the Mindrolling Monastery — one of the largest Buddhist centers in India. The area offers a mix of cultural richness and residential comfort. With the Forest Research Institute (FRI) nearby, the locality is surrounded by greenery. Properties here are reasonably priced compared to Rajpur Road, making it attractive for middle-income families.',
+    description: 'Clement Town is a well-known locality in Dehradun, famous for being home to the Mindrolling Monastery, one of the largest Buddhist centers in India. The area offers a mix of cultural richness and residential comfort with the Forest Research Institute (FRI) nearby.',
+    lifestyle: 'Clement Town has a uniquely multicultural, laid-back atmosphere. The Mindrolling Monastery attracts Buddhist practitioners and tourists from around the world. The FRI campus offers sprawling green spaces for walks and cycling. Local Tibetan restaurants serve authentic momos and thukpa.',
+    target_audience: 'Middle-income families, cultural enthusiasts, eco-conscious buyers, and investors seeking value properties near premium landmarks.',
+    why_invest: 'Clement Town is undervalued relative to its amenities. FRI and Mindrolling Monastery give it tourist footfall that supports commercial property. Prices are 35% below Rajpur Road with similar greenery. Appreciation has been steady at 6-9% annually.',
+    best_for: ['Middle-Income Families', 'Cultural Living', 'Value Investment', 'Green Surroundings', 'Tourist-Zone Commercial'],
     meta_title: 'Property in Clement Town, Dehradun | Flats & Houses Near FRI',
-    meta_description:
-      'Browse properties in Clement Town, Dehradun near FRI and Mindrolling Monastery. Affordable flats and houses in a green, peaceful locality.',
+    meta_description: 'Browse properties in Clement Town, Dehradun near FRI and Mindrolling Monastery. Affordable flats and houses in a green, peaceful locality.',
     hero_text: 'Properties in Clement Town, Dehradun',
-    amenities: [
-      'Mindrolling Monastery',
-      'Forest Research Institute (FRI)',
-      'IMA',
-      'Local Markets',
-      'Parks',
-      'Government Schools',
-    ],
+    amenities: ['Mindrolling Monastery', 'Forest Research Institute (FRI)', 'IMA', 'Local Markets', 'Parks', 'Government Schools'],
+    infrastructure: {
+      schools: ['Cambrian Hall School', 'TonsBridge School', 'Kendriya Vidyalaya FRI', 'Army School Clement Town'],
+      hospitals: ['Doon Hospital 4 km', 'Mahant Indiresh Hospital 5 km', 'Military Hospital 3 km'],
+      markets: ['Clement Town Market', 'Tibetan Market', 'FRI Road Shops', 'Premnagar Market 2 km'],
+      transport: ['City bus to Clock Tower', 'Vikram to Premnagar/ISBT', 'Dehradun Railway Stn 7 km', 'ISBT 6 km'],
+      landmarks: ['Mindrolling Monastery', 'Forest Research Institute', 'Buddha Temple', 'Tapkeshwar Temple 5 km'],
+    },
+    market_insights: {
+      avg_price_sqft: '3,200 - 5,000 per sq.ft.',
+      rent_range: '6,000 - 16,000 per month',
+      appreciation: '6-9% annual growth',
+      demand: 'Moderate with growing interest from eco-conscious buyers',
+      popular_configs: ['2 BHK Flat', 'Independent House', 'Plot'],
+    },
+    nearby_areas: ['Premnagar', 'Sahastradhara Road', 'GMS Road'],
     faqs: [
-      {
-        question: 'What makes Clement Town a good place to live?',
-        answer:
-          'Clement Town offers a peaceful living environment with green surroundings, cultural landmarks like the Mindrolling Monastery, proximity to FRI, and affordable property prices compared to central Dehradun.',
-      },
-      {
-        question: 'What is the average property price in Clement Town?',
-        answer:
-          'Properties in Clement Town range from ₹25 Lac for a 1 BHK flat to ₹1.5 Cr for an independent house. Plot rates are ₹6,000-₹12,000 per sq. yard.',
-      },
+      { question: 'What makes Clement Town a good place to live?', answer: 'Clement Town offers a peaceful living environment with green surroundings, cultural landmarks like the Mindrolling Monastery, proximity to FRI, and affordable property prices compared to central Dehradun.' },
+      { question: 'What is the average property price in Clement Town?', answer: 'Properties in Clement Town range from 25 Lac for a 1 BHK flat to 1.5 Cr for an independent house. Plot rates are 6,000-12,000 per sq. yard.' },
+      { question: 'How far is Clement Town from the city center?', answer: 'Clement Town is about 6-7 km from Clock Tower (Dehradun city center). Regular city buses and shared autos connect the locality within 15-20 minutes.' },
     ],
     property_types: ['flat', 'house', 'plot'],
-    avg_price_range: '₹25 Lac – ₹1.5 Cr',
+    avg_price_range: '25 Lac - 1.5 Cr',
     pin_code: '248002',
   },
 ];

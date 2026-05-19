@@ -50,10 +50,29 @@ export interface Locality {
   slug: string;
   name: string;
   description: string;
+  lifestyle: string;
+  target_audience: string;
+  why_invest: string;
+  best_for: string[];
   meta_title: string;
   meta_description: string;
   hero_text: string;
   amenities: string[];
+  infrastructure: {
+    schools: string[];
+    hospitals: string[];
+    markets: string[];
+    transport: string[];
+    landmarks: string[];
+  };
+  market_insights: {
+    avg_price_sqft: string;
+    rent_range: string;
+    appreciation: string;
+    demand: string;
+    popular_configs: string[];
+  };
+  nearby_areas: string[];
   faqs: FAQ[];
   property_types: string[];
   avg_price_range: string;
