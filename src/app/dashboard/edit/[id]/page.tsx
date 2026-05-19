@@ -72,9 +72,18 @@ export default function EditMyPropertyPage() {
     };
 
     try {
-      const supabase = createClient();
-      const { error } = await supabase.from('properties').update(updates).eq('id', id);
-      if (error) throw error;
+      const firebaseUser = getCurrentUser();
+      const res = await fetch('/api/properties', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'update',
+          id,
+          data: { ...updates, user_id: firebaseUser?.uid },
+        }),
+      });
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || 'Failed to update.');
       router.push('/dashboard');
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Failed to update.');

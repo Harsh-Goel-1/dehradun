@@ -41,9 +41,17 @@ export default function DashboardPage() {
 
   async function handleDelete(id: string) {
     if (!confirm('Delete this listing? This cannot be undone.')) return;
-    const supabase = createClient();
-    await supabase.from('properties').delete().eq('id', id);
-    setProperties(properties.filter((p) => p.id !== id));
+    if (!user) return;
+
+    const res = await fetch('/api/properties', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'delete', id, data: { user_id: user.uid } }),
+    });
+
+    if (res.ok) {
+      setProperties(properties.filter((p) => p.id !== id));
+    }
   }
 
   async function handleLogout() {

@@ -199,8 +199,13 @@ export default function ListPropertyPage() {
     };
 
     try {
-      const { error: insertError } = await supabase.from('properties').insert(property);
-      if (insertError) throw insertError;
+      const res = await fetch('/api/properties', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'insert', data: property }),
+      });
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || 'Failed to submit listing.');
       setSuccess(true);
       setCoverFile(null);
       setCoverPreview(null);
