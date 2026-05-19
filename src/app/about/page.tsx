@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'About Us',
-  description: 'Dehradun Properties is a free property listing platform connecting buyers and sellers directly in Dehradun, Uttarakhand.',
+  description: 'DehradunGhar is a free property listing platform connecting buyers and sellers directly in Dehradun, Uttarakhand.',
   alternates: { canonical: '/about' },
 };
 
@@ -14,7 +14,7 @@ export default function AboutPage() {
       <div className="page-header">
         <div className="container">
           <Breadcrumbs items={[{ label: 'About Us' }]} />
-          <h1>About Dehradun Properties</h1>
+          <h1>About DehradunGhar</h1>
           <p>A free platform for property listings in Dehradun</p>
         </div>
       </div>
@@ -24,7 +24,7 @@ export default function AboutPage() {
           <div className="seo-content">
             <h2>What We Do</h2>
             <p>
-              Dehradun Properties is a free property listing platform focused exclusively on Dehradun
+              DehradunGhar is a free property listing platform focused exclusively on Dehradun
               and its surrounding areas. We connect property owners directly with interested buyers —
               no middlemen, no brokerage, no hidden charges.
             </p>
@@ -55,7 +55,7 @@ export default function AboutPage() {
               and investors alike.
             </p>
 
-            <h3>Why Use Dehradun Properties?</h3>
+            <h3>Why Use DehradunGhar?</h3>
             <ul>
               <li>Free to list — no charges, ever</li>
               <li>Direct buyer-seller contact — no brokerage</li>
