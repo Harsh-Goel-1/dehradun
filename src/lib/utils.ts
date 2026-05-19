@@ -1,6 +1,11 @@
 import { type Property, type PropertyFilters, type PaginatedResult } from '@/types';
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dehradunproperties.in';
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL && process.env.NEXT_PUBLIC_SITE_URL !== 'http://localhost:3000'
+    ? process.env.NEXT_PUBLIC_SITE_URL
+    : process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : 'https://dehradunghar.vercel.app';
 export const SITE_NAME = 'DehradunGhar';
 export const SITE_TAGLINE = 'Find Your Dream Property in Dehradun';
 export const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210';
