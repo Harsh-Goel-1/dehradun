@@ -141,15 +141,93 @@ export default async function PropertyDetailPage({ params }: Props) {
             </div>
 
             <div className="property-sidebar">
+              {/* Builder Project / Official Badge */}
+              {(property.listed_by === 'builder' || property.listed_by === 'dehradunghar') && (
+                <div style={{
+                  padding: '1rem 1.25rem', borderRadius: 10, marginBottom: '1rem',
+                  background: property.listed_by === 'dehradunghar'
+                    ? 'linear-gradient(135deg, #e8f5e9, #f0fdf4)'
+                    : 'linear-gradient(135deg, #e3f2fd, #f0f9ff)',
+                  border: property.listed_by === 'dehradunghar'
+                    ? '1.5px solid #1a5632'
+                    : '1.5px solid #1565c0',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '.35rem' }}>
+                    <span style={{ fontSize: '1.1rem' }}>{property.listed_by === 'dehradunghar' ? '✓' : '🏗'}</span>
+                    <span style={{
+                      fontWeight: 700, fontSize: '.85rem',
+                      color: property.listed_by === 'dehradunghar' ? '#1a5632' : '#1565c0',
+                    }}>
+                      {property.listed_by === 'dehradunghar' ? 'DehradunGhar Official Listing' : 'Builder Project'}
+                    </span>
+                  </div>
+                  <p style={{
+                    fontSize: '.78rem', margin: 0,
+                    color: property.listed_by === 'dehradunghar' ? '#15803d' : '#1976d2',
+                  }}>
+                    {property.listed_by === 'dehradunghar'
+                      ? 'This listing has been verified by DehradunGhar.'
+                      : 'This property is listed by a builder/developer.'}
+                  </p>
+                </div>
+              )}
+
+              {/* Brochure Download */}
+              {property.brochure_url && (
+                <div style={{
+                  padding: '1rem 1.25rem', borderRadius: 10, marginBottom: '1rem',
+                  background: '#fffbeb', border: '1.5px solid #fbbf24',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '.5rem' }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="1.5">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                    </svg>
+                    <span style={{ fontWeight: 700, fontSize: '.85rem', color: '#92400e' }}>Project Brochure</span>
+                  </div>
+                  <a
+                    href={property.brochure_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn--lg"
+                    style={{
+                      width: '100%', textAlign: 'center',
+                      background: '#d97706', color: '#fff', border: 'none',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.5rem',
+                    }}
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    Download Brochure (PDF)
+                  </a>
+                </div>
+              )}
+
               <div className="contact-card">
-                <h3>Contact Owner</h3>
+                <h3>
+                  {property.listed_by === 'dehradunghar' ? 'Contact DehradunGhar' 
+                    : property.listed_by === 'builder' ? 'Contact Builder'
+                    : 'Contact Owner'}
+                </h3>
                 {property.owner_name && (
                   <p style={{ fontSize: '.95rem', fontWeight: 600, marginBottom: '.5rem' }}>
                     {property.owner_name}
+                    {property.listed_by === 'dehradunghar' && (
+                      <span style={{ marginLeft: '.35rem', fontSize: '.65rem', background: '#e8f5e9', color: '#1a5632', padding: '.1rem .35rem', borderRadius: 4, fontWeight: 700 }}>
+                        ✓ Verified
+                      </span>
+                    )}
                   </p>
                 )}
                 <p style={{ fontSize: '.85rem', color: '#666', marginBottom: '1rem', lineHeight: 1.6 }}>
-                  Reach out directly to the property owner.
+                  {property.listed_by === 'builder'
+                    ? 'Get project details directly from the builder.'
+                    : property.listed_by === 'dehradunghar'
+                      ? 'Reach out to DehradunGhar for verified details.'
+                      : 'Reach out directly to the property owner.'}
                 </p>
                 <div style={{ display: 'flex', gap: '.5rem' }}>
                   <div style={{ flex: 1 }}>

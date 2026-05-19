@@ -33,6 +33,17 @@ export default function PropertyCard({ property }: { property: Property }) {
             ✓ DehradunGhar Official
           </span>
         )}
+        {property.listed_by === 'builder' && (
+          <span style={{
+            position: 'absolute', bottom: 8, left: 8,
+            background: 'rgba(21, 101, 192, 0.9)', color: '#fff',
+            fontSize: '.65rem', fontWeight: 700, padding: '.2rem .5rem',
+            borderRadius: 4, backdropFilter: 'blur(4px)',
+            display: 'flex', alignItems: 'center', gap: '.25rem',
+          }}>
+            🏗 Builder Project
+          </span>
+        )}
         <span className="property-card-type">{getPropertyTypeLabel(property.property_type)}</span>
       </Link>
 

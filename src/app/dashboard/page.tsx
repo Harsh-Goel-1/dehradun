@@ -13,6 +13,7 @@ export default function DashboardPage() {
   const [user, setUser] = useState<User | null>(null);
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -34,6 +35,14 @@ export default function DashboardPage() {
 
       setProperties((data as Property[]) || []);
       setLoading(false);
+
+      // Check if admin
+      if (firebaseUser.phoneNumber) {
+        try {
+          const res = await fetch(`/api/admin/properties?phone=${encodeURIComponent(firebaseUser.phoneNumber)}`);
+          setIsAdmin(res.ok);
+        } catch { setIsAdmin(false); }
+      }
     });
 
     return () => unsubscribe();
@@ -79,7 +88,12 @@ export default function DashboardPage() {
               <h1>My Dashboard</h1>
               <p>{user?.phoneNumber}</p>
             </div>
-            <div style={{ display: 'flex', gap: '.5rem' }}>
+            <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap' }}>
+              {isAdmin && (
+                <Link href="/admin" className="btn" style={{ background: '#1e40af', color: '#fff', border: 'none' }}>
+                  🛡 Admin Panel
+                </Link>
+              )}
               <Link href="/list-property" className="btn btn--primary">+ List New Property</Link>
               <button onClick={handleLogout} className="btn btn--outline">Log Out</button>
             </div>
@@ -141,6 +155,11 @@ export default function DashboardPage() {
                         <Link href={`/properties/${p.slug}`} style={{ color: '#1a5632', fontWeight: 500 }}>
                           {p.title}
                         </Link>
+                        {p.listed_by === 'dehradunghar' && (
+                          <span style={{ marginLeft: '.35rem', fontSize: '.6rem', background: '#dbeafe', color: '#1e40af', padding: '.1rem .35rem', borderRadius: 4, fontWeight: 700 }}>
+                            OFFICIAL
+                          </span>
+                        )}
                       </td>
                       <td>{p.locality}</td>
                       <td>{formatPrice(p.price)}</td>
@@ -167,6 +186,23 @@ export default function DashboardPage() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          )}
+
+          {/* Admin hint */}
+          {isAdmin && (
+            <div style={{
+              marginTop: '2rem', padding: '1rem 1.25rem',
+              background: '#f0f9ff', border: '1.5px solid #93c5fd',
+              borderRadius: 10, display: 'flex', alignItems: 'center', gap: '.75rem',
+            }}>
+              <span style={{ fontSize: '1.25rem' }}>🛡</span>
+              <div>
+                <p style={{ fontWeight: 600, color: '#1e40af', fontSize: '.9rem', margin: 0 }}>You have admin access</p>
+                <p style={{ fontSize: '.8rem', color: '#3b82f6', margin: 0 }}>
+                  Go to <Link href="/admin" style={{ fontWeight: 700, textDecoration: 'underline' }}>Admin Panel</Link> to manage all listings, delete spam, and toggle featured properties.
+                </p>
+              </div>
             </div>
           )}
         </div>
