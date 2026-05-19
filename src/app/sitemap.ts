@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/utils';
-import { getAllLocalitySlugs, LOCALITIES } from '@/lib/data/localities';
+import { getAllLocalitySlugs } from '@/lib/data/localities';
 
 const PROPERTY_TYPES = ['flat', 'house', 'villa', 'plot', 'commercial', 'pg', 'farmhouse', 'industrial'];
 
@@ -40,19 +40,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.75,
   }));
 
-  // Programmatic: type × locality cross pages
-  const crossPages: MetadataRoute.Sitemap = [];
-  for (const locality of LOCALITIES) {
-    for (const type of locality.property_types) {
-      crossPages.push({
-        url: `${SITE_URL}/properties?type=${type}&locality=${encodeURIComponent(locality.name)}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly',
-        priority: 0.7,
-      });
-    }
-  }
-
   // Individual property pages
   const propertyPages: MetadataRoute.Sitemap = propertySlugs.map((slug) => ({
     url: `${SITE_URL}/properties/${slug}`,
@@ -61,5 +48,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.65,
   }));
 
-  return [...staticPages, ...localityPages, ...typePages, ...crossPages, ...propertyPages];
+  return [...staticPages, ...localityPages, ...typePages, ...propertyPages];
 }
