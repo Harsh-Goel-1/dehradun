@@ -2,11 +2,15 @@ import { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/utils';
 import { getAllLocalitySlugs } from '@/lib/data/localities';
 
-const PROPERTY_TYPES = ['flat', 'house', 'villa', 'plot', 'commercial', 'pg', 'farmhouse', 'industrial'];
+// Force dynamic — regenerate sitemap on every request so new/removed
+// listings are immediately reflected
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const localitySlugs = getAllLocalitySlugs();
 
+  // Fetch live property slugs from database
   let propertySlugs: string[] = [];
   try {
     const { getAllPropertySlugs } = await import('@/lib/data/properties');
@@ -17,36 +21,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Core pages
   const staticPages: MetadataRoute.Sitemap = [
-    { url: SITE_URL, lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
-    { url: `${SITE_URL}/properties`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.9 },
-    { url: `${SITE_URL}/properties?listing=rent`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.9 },
-    { url: `${SITE_URL}/list-property`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${SITE_URL}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.4 },
+    { url: SITE_URL, lastModified: new Date(), priority: 1.0 },
+    { url: `${SITE_URL}/properties`, lastModified: new Date(), priority: 0.9 },
+    { url: `${SITE_URL}/list-property`, lastModified: new Date(), priority: 0.7 },
+    { url: `${SITE_URL}/about`, lastModified: new Date(), priority: 0.4 },
   ];
 
-  // Locality pages (high value for local SEO)
+  // Locality pages
   const localityPages: MetadataRoute.Sitemap = localitySlugs.map((slug) => ({
     url: `${SITE_URL}/${slug}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly',
     priority: 0.85,
   }));
 
-  // Programmatic: /properties?type=X (property-type landing pages)
-  const typePages: MetadataRoute.Sitemap = PROPERTY_TYPES.map((type) => ({
-    url: `${SITE_URL}/properties?type=${type}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.75,
-  }));
-
-  // Individual property pages
+  // Individual property pages (live from DB)
   const propertyPages: MetadataRoute.Sitemap = propertySlugs.map((slug) => ({
     url: `${SITE_URL}/properties/${slug}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.65,
+    priority: 0.7,
   }));
 
-  return [...staticPages, ...localityPages, ...typePages, ...propertyPages];
+  return [...staticPages, ...localityPages, ...propertyPages];
 }
