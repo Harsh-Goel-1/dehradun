@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { SITE_NAME } from '@/lib/utils';
 import { onAuthChange, type User } from '@/lib/firebase/auth';
 
 const NAV_LINKS = [
@@ -34,11 +34,14 @@ export default function Header() {
     <header className="header">
       <div className="header-inner container">
         <Link href="/" className="logo" aria-label="Home">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg>
-          <span>{SITE_NAME}</span>
+          <Image
+            src="/images/logo.png"
+            alt="DehradunGhar"
+            width={160}
+            height={36}
+            style={{ height: 32, width: 'auto' }}
+            priority
+          />
         </Link>
 
         <nav className="desktop-nav" aria-label="Main navigation">

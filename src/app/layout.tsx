@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `${SITE_NAME} — Find Your Dream Property in Dehradun`,
     description: 'Browse verified flats, houses, villas, and plots across Dehradun.',
+    images: [{ url: '/images/logo.png', width: 1024, height: 1024, alt: SITE_NAME }],
   },
   twitter: {
     card: 'summary_large_image',
