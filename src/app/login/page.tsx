@@ -93,15 +93,22 @@ function LoginForm() {
         : `+91${cleaned}`;
     setFullPhone(formattedPhone);
 
+    // Switch to OTP screen optimistically after a short delay
+    // so user can be ready to type OTP when it arrives
+    const switchTimer = setTimeout(() => {
+      setStep('otp');
+      setLoading(false);
+    }, 1500);
+
     try {
       // Wait for captcha instead of erroring immediately
       if (!recaptchaVerifierRef.current) {
         const ready = await waitForCaptcha();
         if (!ready) {
-          // Try one more setup
           await setupRecaptcha();
           const retryReady = await waitForCaptcha();
           if (!retryReady) {
+            clearTimeout(switchTimer);
             throw new Error('Verification setup failed. Please refresh the page.');
           }
         }
@@ -109,8 +116,12 @@ function LoginForm() {
 
       const result = await signInWithPhoneNumber(auth, formattedPhone, recaptchaVerifierRef.current!);
       setConfirmationResult(result);
+      // If Firebase resolves before the timer, switch immediately
+      clearTimeout(switchTimer);
       setStep('otp');
+      setLoading(false);
     } catch (err: unknown) {
+      clearTimeout(switchTimer);
       const msg = err instanceof Error ? err.message : 'Failed to send OTP.';
       if (msg.includes('too-many-requests')) {
         setError('Too many attempts. Please wait a few minutes and try again.');
@@ -121,6 +132,7 @@ function LoginForm() {
       } else {
         setError(msg);
       }
+      setStep('phone');
       // Reset reCAPTCHA after failure so it can be used again
       await setupRecaptcha();
     } finally {
