@@ -25,6 +25,7 @@ export interface Property {
   youtube_url: string | null;
   listed_by: 'owner' | 'dealer' | 'builder' | 'dehradunghar';
   brochure_url: string | null;
+  map_url: string | null;
   user_id: string | null;
   created_at: string;
   updated_at: string;

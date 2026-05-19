@@ -181,6 +181,7 @@ export default function AdminListPropertyPage() {
       youtube_url: (form.get('youtube_url') as string || '').trim() || null,
       listed_by: 'dehradunghar',
       brochure_url: brochureUrl || null,
+      map_url: (form.get('map_url') as string || '').trim() || null,
       user_id: user.uid,
     };
 
@@ -446,6 +447,12 @@ export default function AdminListPropertyPage() {
             <div className="form-group">
               <label className="form-label">YouTube Video Link (optional)</label>
               <input name="youtube_url" className="form-input" placeholder="https://www.youtube.com/watch?v=..." />
+            </div>
+
+            {/* Google Maps */}
+            <div className="form-group">
+              <label className="form-label">Google Maps Link (optional)</label>
+              <input name="map_url" className="form-input" placeholder="https://maps.google.com/..." />
             </div>
 
             <button type="submit" className="btn btn--primary btn--lg" style={{ width: '100%', marginTop: '.5rem' }} disabled={loading}>

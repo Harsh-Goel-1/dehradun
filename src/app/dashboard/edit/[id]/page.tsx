@@ -96,6 +96,7 @@ export default function EditMyPropertyPage() {
       owner_email: form.get('owner_email') as string || '',
       contact_phone: owner_phone.startsWith('91') ? owner_phone : `91${owner_phone}`,
       youtube_url: (form.get('youtube_url') as string || '').trim() || null,
+      map_url: (form.get('map_url') as string || '').trim() || null,
       listed_by: listedBy,
     };
 
@@ -300,6 +301,12 @@ export default function EditMyPropertyPage() {
               <label className="form-label">YouTube Video Link (optional)</label>
               <input name="youtube_url" className="form-input" placeholder="https://www.youtube.com/watch?v=..." defaultValue={property.youtube_url || ''} />
               <p style={{ fontSize: '.75rem', color: '#999', marginTop: '.25rem' }}>Add a property walkthrough video</p>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Google Maps Link (optional)</label>
+              <input name="map_url" className="form-input" placeholder="https://maps.google.com/..." defaultValue={property.map_url || ''} />
+              <p style={{ fontSize: '.75rem', color: '#999', marginTop: '.25rem' }}>Paste the Google Maps share link</p>
             </div>
 
             <button type="submit" className="btn btn--primary btn--lg" style={{ width: '100%', marginTop: '.5rem' }} disabled={saving}>

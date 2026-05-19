@@ -212,6 +212,7 @@ export default function ListPropertyPage() {
       youtube_url: youtubeUrl || null,
       listed_by: listedBy,
       brochure_url: brochureUrl || null,
+      map_url: (form.get('map_url') as string || '').trim() || null,
       user_id: user.uid,
     };
 
@@ -606,6 +607,13 @@ export default function ListPropertyPage() {
               <label className="form-label">YouTube Video Link (optional)</label>
               <input name="youtube_url" className="form-input" placeholder="https://www.youtube.com/watch?v=..." />
               <p style={{ fontSize: '.75rem', color: '#999', marginTop: '.25rem' }}>Add a property walkthrough video</p>
+            </div>
+
+            {/* Google Maps */}
+            <div className="form-group">
+              <label className="form-label">Google Maps Link (optional)</label>
+              <input name="map_url" className="form-input" placeholder="https://maps.google.com/..." />
+              <p style={{ fontSize: '.75rem', color: '#999', marginTop: '.25rem' }}>Paste the Google Maps share link for the property location</p>
             </div>
 
             <button type="submit" className="btn btn--primary btn--lg" style={{ width: '100%', marginTop: '.5rem' }} disabled={loading}>

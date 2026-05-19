@@ -137,6 +137,36 @@ export default async function PropertyDetailPage({ params }: Props) {
                     </div>
                   );
                 })()}
+
+                {property.map_url && (
+                  <div style={{ marginTop: '1.5rem' }}>
+                    <h2>Location</h2>
+                    <a
+                      href={property.map_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'inline-flex', alignItems: 'center', gap: '.5rem',
+                        marginTop: '.75rem', padding: '.65rem 1.25rem',
+                        background: '#f0f4f0', border: '1.5px solid var(--color-primary)',
+                        borderRadius: 8, color: 'var(--color-primary)',
+                        fontSize: '.9rem', fontWeight: 600,
+                        transition: 'all .2s',
+                      }}
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                      View on Google Maps
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                      </svg>
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
 
