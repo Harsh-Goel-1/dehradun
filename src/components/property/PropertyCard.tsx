@@ -46,7 +46,7 @@ export default function PropertyCard({ property }: { property: Property }) {
         )}
         <span className="property-card-type">{getPropertyTypeLabel(property.property_type)}</span>
         <span style={{
-          position: 'absolute', bottom: '.75rem', left: '.75rem',
+          position: 'absolute', bottom: '.75rem', right: '.75rem',
           background: property.listing_type === 'rent' ? 'rgba(156, 39, 176, 0.9)' : 'rgba(21, 101, 192, 0.9)',
           color: '#fff', fontSize: '.65rem', fontWeight: 700,
           padding: '.2rem .5rem', borderRadius: 4,
