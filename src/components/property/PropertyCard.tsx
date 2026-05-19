@@ -24,7 +24,7 @@ export default function PropertyCard({ property }: { property: Property }) {
         )}
         {property.listed_by === 'dehradunghar' && (
           <span style={{
-            position: 'absolute', bottom: 8, left: 8,
+            position: 'absolute', top: property.featured ? '2.25rem' : '.75rem', left: '.75rem',
             background: 'rgba(26, 86, 50, 0.9)', color: '#fff',
             fontSize: '.65rem', fontWeight: 700, padding: '.2rem .5rem',
             borderRadius: 4, backdropFilter: 'blur(4px)',
@@ -35,7 +35,7 @@ export default function PropertyCard({ property }: { property: Property }) {
         )}
         {property.listed_by === 'builder' && (
           <span style={{
-            position: 'absolute', bottom: 8, left: 8,
+            position: 'absolute', top: property.featured ? '2.25rem' : '.75rem', left: '.75rem',
             background: 'rgba(21, 101, 192, 0.9)', color: '#fff',
             fontSize: '.65rem', fontWeight: 700, padding: '.2rem .5rem',
             borderRadius: 4, backdropFilter: 'blur(4px)',
