@@ -4,7 +4,7 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
-import { OrganizationJsonLd, LocalBusinessJsonLd } from '@/components/seo/JsonLd';
+import { OrganizationJsonLd, LocalBusinessJsonLd, WebSiteJsonLd } from '@/components/seo/JsonLd';
 import { SITE_NAME, SITE_URL } from '@/lib/utils';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
@@ -20,7 +20,10 @@ export const metadata: Metadata = {
   keywords: [
     'property in dehradun', 'flats in dehradun', 'houses in dehradun',
     'villas in dehradun', 'plots in dehradun', 'dehradun real estate',
-    'buy property dehradun', 'dehradun property rates',
+    'buy property dehradun', 'dehradun property rates', 'rent house dehradun',
+    'flat for rent dehradun', 'property dealer dehradun', '2 bhk dehradun',
+    '3 bhk flat dehradun', 'independent house dehradun', 'villa dehradun',
+    'farmhouse dehradun', 'commercial property dehradun',
   ],
   manifest: '/manifest.json',
   themeColor: '#1a5632',
@@ -39,7 +42,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: SITE_NAME,
     title: `${SITE_NAME} — Find Your Dream Property in Dehradun`,
-    description: 'Browse verified flats, houses, villas, and plots across Dehradun.',
+    description: 'Browse verified flats, houses, villas, and plots across Dehradun. Direct from owners.',
     images: [{ url: '/images/logo.png', width: 1024, height: 1024, alt: SITE_NAME }],
   },
   twitter: {
@@ -49,6 +52,10 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: { canonical: SITE_URL },
+  verification: {
+    // Add Google Search Console verification token here when available
+    // google: 'YOUR_VERIFICATION_TOKEN',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -57,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <OrganizationJsonLd />
         <LocalBusinessJsonLd />
+        <WebSiteJsonLd />
         <Header />
         <main>{children}</main>
         <Footer />
