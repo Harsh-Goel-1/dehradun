@@ -43,6 +43,7 @@ export default function EditMyPropertyPage() {
   const [error, setError] = useState('');
   const [property, setProperty] = useState<Property | null>(null);
   const [listedBy, setListedBy] = useState<'owner' | 'dealer' | 'builder' | 'dehradunghar'>('owner');
+  const [areaUnit, setAreaUnit] = useState<'sqft' | 'sqm' | 'gaj'>('sqft');
 
   useEffect(() => {
     async function load() {
@@ -83,7 +84,7 @@ export default function EditMyPropertyPage() {
       property_type: form.get('property_type') as string,
       bedrooms: parseInt(form.get('bedrooms') as string) || 0,
       bathrooms: parseInt(form.get('bathrooms') as string) || 0,
-      area_sqft: parseInt(form.get('area_sqft') as string) || 0,
+      area_sqft: Math.round((parseInt(form.get('area_sqft') as string) || 0) * (areaUnit === 'sqm' ? 10.764 : areaUnit === 'gaj' ? 9 : 1)),
       status: form.get('status') as string,
       furnishing: form.get('furnishing') as string || 'unfurnished',
       facing: form.get('facing') as string || '',
@@ -243,8 +244,15 @@ export default function EditMyPropertyPage() {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="form-group">
-                <label className="form-label">Area (sq.ft.)</label>
-                <input name="area_sqft" type="number" className="form-input" defaultValue={property.area_sqft} />
+                <label className="form-label">Area</label>
+                <div style={{ display: 'flex', gap: '.5rem' }}>
+                  <input name="area_sqft" type="number" className="form-input" defaultValue={property.area_sqft} style={{ flex: 1 }} />
+                  <select value={areaUnit} onChange={(e) => setAreaUnit(e.target.value as 'sqft' | 'sqm' | 'gaj')} className="form-input" style={{ width: 'auto', minWidth: 80 }}>
+                    <option value="sqft">sq.ft.</option>
+                    <option value="sqm">sq.m.</option>
+                    <option value="gaj">Gaj</option>
+                  </select>
+                </div>
               </div>
               <div className="form-group">
                 <label className="form-label">Furnishing</label>

@@ -42,6 +42,7 @@ export default function ListPropertyPage() {
   const [coverPreview, setCoverPreview] = useState<string | null>(null);
   const [coverFile, setCoverFile] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState('');
+  const [areaUnit, setAreaUnit] = useState<'sqft' | 'sqm' | 'gaj'>('sqft');
   const [listedBy, setListedBy] = useState<'owner' | 'dealer' | 'builder' | 'dehradunghar'>('owner');
   const [brochureFile, setBrochureFile] = useState<File | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -195,7 +196,7 @@ export default function ListPropertyPage() {
       property_type: form.get('property_type') as string,
       bedrooms: parseInt(form.get('bedrooms') as string) || 0,
       bathrooms: parseInt(form.get('bathrooms') as string) || 0,
-      area_sqft: parseInt(form.get('area_sqft') as string) || 0,
+      area_sqft: Math.round((parseInt(form.get('area_sqft') as string) || 0) * (areaUnit === 'sqm' ? 10.764 : areaUnit === 'gaj' ? 9 : 1)),
       images: coverUrl ? [coverUrl] : [],
       featured: false,
       status: 'available',
@@ -487,8 +488,15 @@ export default function ListPropertyPage() {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="form-group">
-                <label className="form-label">Area (sq.ft.)</label>
-                <input name="area_sqft" type="number" className="form-input" placeholder="1200" />
+                <label className="form-label">Area</label>
+                <div style={{ display: 'flex', gap: '.5rem' }}>
+                  <input name="area_sqft" type="number" className="form-input" placeholder="1200" style={{ flex: 1 }} />
+                  <select value={areaUnit} onChange={(e) => setAreaUnit(e.target.value as 'sqft' | 'sqm' | 'gaj')} className="form-input" style={{ width: 'auto', minWidth: 80 }}>
+                    <option value="sqft">sq.ft.</option>
+                    <option value="sqm">sq.m.</option>
+                    <option value="gaj">Gaj</option>
+                  </select>
+                </div>
               </div>
               <div className="form-group">
                 <label className="form-label">Furnishing</label>
