@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { onAuthChange, type User } from '@/lib/firebase/auth';
+import InstallButton from '@/components/ui/InstallButton';
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
@@ -88,9 +89,12 @@ export default function Header() {
               </svg>
             </Link>
           )}
+
+          <InstallButton />
         </nav>
 
         <div className="mobile-header-right">
+          <InstallButton />
           {/* Mobile user icon */}
           {user ? (
             <Link href="/dashboard" className="nav-user-icon" aria-label="My Dashboard">
