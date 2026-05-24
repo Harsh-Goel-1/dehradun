@@ -62,8 +62,8 @@ export default function SearchBar({ variant = 'hero' }: { variant?: 'hero' | 'co
           style={{
             flex: 1, padding: '.5rem 1rem', border: '1.5px solid var(--color-primary)',
             borderRadius: '6px 0 0 6px', fontWeight: 700, fontSize: '.85rem', cursor: 'pointer',
-            background: listingType === 'sale' ? 'var(--color-primary)' : '#fff',
-            color: listingType === 'sale' ? '#fff' : 'var(--color-primary)',
+            background: listingType === 'sale' ? '#fff' : 'var(--color-primary)',
+            color: listingType === 'sale' ? 'var(--color-primary)' : '#fff',
             transition: 'all .2s',
           }}>
           Buy
@@ -73,8 +73,8 @@ export default function SearchBar({ variant = 'hero' }: { variant?: 'hero' | 'co
             flex: 1, padding: '.5rem 1rem', border: '1.5px solid var(--color-primary)',
             borderLeft: 'none',
             borderRadius: '0 6px 6px 0', fontWeight: 700, fontSize: '.85rem', cursor: 'pointer',
-            background: listingType === 'rent' ? 'var(--color-primary)' : '#fff',
-            color: listingType === 'rent' ? '#fff' : 'var(--color-primary)',
+            background: listingType === 'rent' ? '#fff' : 'var(--color-primary)',
+            color: listingType === 'rent' ? 'var(--color-primary)' : '#fff',
             transition: 'all .2s',
           }}>
           Rent
